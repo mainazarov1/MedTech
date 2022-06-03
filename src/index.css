@@ -1,13 +1,11 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import './assets/fonts/SF\ Dispaly\ Font/stylesheet.css';
+@import '../node_modules/normalize.css/normalize.css';
+/* @import './components/SignIn/style.css'; */
+/* @import './components/InputMUI/styles.module.css'; */
+*{
+	font-family: 'SF Pro Display';
+	font-weight: 400;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
+.App{
+	height: 100vh;
+}
