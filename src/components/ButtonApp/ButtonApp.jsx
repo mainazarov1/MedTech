@@ -12,11 +12,14 @@ export const ButtonApp = ({
   hover,
 	prevStep,
 	nextStep,
-  fullWidth = true,
+	fullWidth = true,
+	style
 }) => {
   const CssButton = styled(Button)({
     textTransform: "capitalize",
-    height: "50px",
+		height: "50px",
+		maxWidth: '400px',
+		width: '100%',
     "&.MuiButton-contained": {
       background: "#68B7EC",
       boxShadow: "none",
@@ -24,7 +27,7 @@ export const ButtonApp = ({
         background: "#A8A8A8",
       },
       "&:hover": {
-        opacity: 0.9,
+        opacity: .9,
       },
     },
     "&.MuiButton-text": {
@@ -38,8 +41,8 @@ export const ButtonApp = ({
       // 	border: '1px solid #68B7EC'
       // }
     },
-    "&.Mui-focusVisible": {
-      background: "red",
+		"&.Mui-focusVisible": {
+			opacity: .9
     },
   });
 
@@ -47,12 +50,14 @@ export const ButtonApp = ({
     <CssButton
       type={type}
       variant={variant}
-      fullWidth={fullWidth}
+      fullWidth={true}
       height="50px"
       disabled={disabled}
       startIcon={icon}
       hover={hover}
-      onClick={prevStep || nextStep}
+			onClick={prevStep || nextStep}
+			// sx={{ style }}
+			
     >
       {title}
     </CssButton>
