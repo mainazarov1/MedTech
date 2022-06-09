@@ -6,8 +6,8 @@ function App() {
 	return (
 		<div className="App">
 			<>
-				<Auth />
-				{/* <DocWeb /> */}
+				{/*<Auth />*/}
+				 <DocWeb />
 			</>
 
 		</div>
