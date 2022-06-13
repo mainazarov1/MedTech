@@ -1,0 +1,37 @@
+.react-calendar {
+	width: 100%;
+	height: 100%;
+}
+.react-calendar__month-view__days {
+	background-color: aquamarine;
+	/* gap: 15px 20px; */
+}
+.react-calendar__month-view__days > button{
+	flex: 1 1 calc(100%-100px)!important;
+}
+.react-calendar__month-view__days > button{
+	width: 40px;
+}
+.react-calendar__month-view__days__day > button{
+	width: 40px;
+}
+button.react-calendar__tile {
+	/* width: 40px;
+	height: 40px; */
+}
+.react-calendar__tile{
+	flex: 0 0 calc(100%-100px)!important;
+}
+.react-calendar__navigation button {
+  font-size: 2em;
+}
+
+button.react-calendar__tile.react-calendar__month-view__days__day {
+	border-radius: 10px;
+	background-color: red;
+	flex: 0 0 calc(100%-100px)!important;
+	width: 40px;
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 50px;
+}

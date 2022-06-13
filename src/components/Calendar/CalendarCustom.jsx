@@ -11,7 +11,7 @@ export const CalendarCustom = () => {
 				value={value}
 				defaultView={"month"}
 				onClickDay={() => alert('click')}
-				
+				view={{}}
 			/>
     </div>
   );

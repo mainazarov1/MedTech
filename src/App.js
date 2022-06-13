@@ -7,9 +7,9 @@ function App() {
 	return (
 		<div className="App">
 			<>
-				<Auth />
-				<DocWeb />
-				{/* <CalendarCustom /> */}
+				{/* <Auth /> */}
+				{/* <DocWeb /> */}
+				<CalendarCustom />
 			</>
 
 		</div>
