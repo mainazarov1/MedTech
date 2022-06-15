@@ -11,4 +11,7 @@
 	font-size: 24px;
 	font-weight: 900;
 	gap: 10px;
+	color: #FFF;
+	text-decoration: none;
+	width: fit-content;
 }

@@ -1,23 +1,23 @@
 import { Container } from "@mui/material";
 import React from "react";
-import logo from "./../../assets/icons/logo_med_tech.svg";
+import { Link } from "react-router-dom";
+import {icons} from './../../assets/icons/index'
 import style from "./Header.module.css";
 export const Header = () => {
   return (
     <header className={style.header}>
       <Container>
         <div className={style.header__wrap}>
-          <div className={style.header__logo}>
-            <img
-              src={logo}
+          <Link to='/' className={style.header__logo}>
+						<img
+							src={icons.medTechWhite}
               alt="logo"
-              srcset=""
               style={{
                 width: "45px",
               }}
             />
             MEDTECH
-          </div>
+          </Link>
         </div>
       </Container>
     </header>
