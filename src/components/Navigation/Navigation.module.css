@@ -1,0 +1,7 @@
+.nav__wrap {
+	display: flex;
+	gap: 20px;
+	padding: 13px 0;
+	background-color: #FFFFFF;
+	/* width: 480px; */
+}
