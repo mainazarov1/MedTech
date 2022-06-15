@@ -1,0 +1,17 @@
+.header {
+	background-color: #AECDFD;
+	color: #FFFFFF;
+	padding: 10px 0;
+}
+.header__wrap{
+}
+.header__logo{
+	display: flex;
+	align-items: center;
+	font-size: 24px;
+	font-weight: 900;
+	gap: 10px;
+	color: #FFF;
+	text-decoration: none;
+	width: fit-content;
+}
