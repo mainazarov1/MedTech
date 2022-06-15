@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material'
 import React from 'react'
+import { Table } from '../Table/Table'
 
 export const Schedule = () => {
 	return (
@@ -11,7 +12,7 @@ export const Schedule = () => {
 					fontSize: '24px'
 				}}
 			/>
-			
+			<Table />
 		</div>
 	)
 }
