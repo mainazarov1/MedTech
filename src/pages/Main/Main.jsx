@@ -13,7 +13,7 @@ export const Main = () => {
     <>
       <Header />
       <Navigation />
-      <Container>
+			<Container sx={{ background: '#F8F7F3', paddingTop: '30px', minHeight: '85vh' }}>
         <Routes>
           <Route path={"schedule"} element={<Schedule />} />
           <Route path={"check-list"} element={<CheckList />} />
