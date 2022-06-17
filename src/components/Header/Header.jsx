@@ -8,7 +8,7 @@ export const Header = () => {
     <header className={style.header}>
       <Container>
         <div className={style.header__wrap}>
-          <Link to='/' className={style.header__logo}>
+          <Link to='/manual' className={style.header__logo}>
 						<img
 							src={icons.medTechWhite}
               alt="logo"
