@@ -4,6 +4,7 @@ import React from "react";
 import { ButtonApp } from "../ButtonApp/ButtonApp";
 import { InputAppContainer } from "../InputApp/InputAppContainer";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { icons } from "../../assets/icons";
 export const FormRecoveryWithNewPass = ({prevStep}) => {
   return (
 		<Box
@@ -26,7 +27,7 @@ export const FormRecoveryWithNewPass = ({prevStep}) => {
           <ButtonApp
 						variant="text"
 						colorText='black'
-            icon={<ArrowBackIosNewIcon />}
+            icon={icons.arrow}
 						title="Назад"
 						hover={false}
 						prevStep={prevStep}
