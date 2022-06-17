@@ -53,14 +53,16 @@ export const ButtonApp = (
     },
   });
 
-  return (
-    <CssButton
-      type={type}
-      variant={variant}
-      fullWidth={true}
-      // height="50px"
+	return (
+		<CssButton
+			type={type}
+			variant={variant}
+			fullWidth={true}
+			// height="50px"
 			disabled={disabled}
-			startIcon={icon && <img src={icon} width={iconWidth} />}
+			startIcon={
+				icon && <img src={icon} width={iconWidth} />
+			}
       hover={hover}
 			onClick={prevStep || nextStep}
 			style={{

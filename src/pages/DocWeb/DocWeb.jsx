@@ -1,42 +1,39 @@
-import { Container } from "@mui/material";
 import React from "react";
 import { WebSection } from "./WebSection/WebSection";
-import img1 from "./../../assets/images/manual-bg.jpeg";
-import img2 from "./../../assets/images/manual-bg2.jpeg";
-import img3 from "./../../assets/images/manual-bg3.jpeg";
-import img4 from "./../../assets/images/manual-bg4.jpeg";
-import { Header } from "../../components/Header/Header";
-import { Route, Routes } from "react-router-dom";
-import { Schedule } from "../../components/Schedule/Schedule";
-import { CheckList } from "../../components/CheckList/CheckList";
-import { Users } from "../../components/Users/Users";
-import { Navigation } from "../../components/Navigation/Navigation";
+import { images } from "./../../assets/images/index.js";
 
 const pages = [
   {
-    img: img1,
+    img: images.manualImg,
     preTitle: "Ваш личный кабинет",
     title: "Med Tech",
     text: "Решение которое помогает автомотизировать ваш процесс работы с пациентами.",
-    buttonTitle: "Войти",
+		buttonTitle: "Войти",
+		route: 'auth'
+		
   },
   {
-    img: img2,
+    img: images.manualImg2,
     title: "Расписание",
     text: "В данном разделе вы сможете распределить свой график приема на обследование пациентов. Для этого вам надо всего лишь прописать время в какое время вы проводите осмотр, а в свою очередь пациенты с помощью мобильного приложения смогут просмотреть и забронировать время для обследования.",
-    buttonTitle: "Перейти",
+		buttonTitle: "Перейти",
+		route: 'schedule'
+		
   },
   {
-    img: img3,
+    img: images.manualImg3,
     title: "Чек-лист",
     text: "В этом разделе вы прописываете вопросы для своих пациентов и сохраняете их и прикрепляете к определённому пациенту в свою очередь этот чек-лист отображается в мобильном приложение пациентов которые вносят ответы на заданные вопросы с пошью  галочки или свободного ответа.",
-    buttonTitle: "Перейти",
+		buttonTitle: "Перейти",
+		route: 'check-list'
+		
   },
   {
-    img: img4,
-    title: "Статистика пользователей",
+    img: images.manualImg4,
+    title: "Пользователи",
     text: "На данной странице сайта будут отображаться ваши пациенты, что бы перейти на детальную страницу пациента вам не обходи кликнуть  на определенного пациента после чего вас перебросят на детальную страницу пациента где будут отображаться подробная информация о нем, также вы можете вносить изменения в данных о пользователе.",
-    buttonTitle: "Перейти",
+		buttonTitle: "Перейти",
+		route: 'users'
   },
 ];
 export const DocWeb = () => {
@@ -48,13 +45,10 @@ export const DocWeb = () => {
         title={item.title}
         text={item.text}
         buttonTitle={item.buttonTitle}
-        preTitle={item.preTitle}
+				preTitle={item.preTitle}
+				route={item.route}
       />
     );
   });
-  return (
-    <>
-      {sections}
-    </>
-  );
+  return <>{sections}</>;
 };

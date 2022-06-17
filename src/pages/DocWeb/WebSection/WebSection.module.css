@@ -20,9 +20,11 @@
 	/* z-index: 0; */
 }
 .manual__logo{
-	position: absolute;
-	z-index: 10;
-	top: 100px;
+	position: relative;
+	align-items: flex-start;
+	margin-bottom: 100px;
+	/* z-index: 10; */
+	/* top: 0px; */
 }
 .manual__bg__image {
 	position: absolute;

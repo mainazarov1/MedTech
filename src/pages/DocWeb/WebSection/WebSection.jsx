@@ -1,11 +1,12 @@
-import { Container, Stack, Typography } from "@mui/material";
-import { Box, fontSize, minHeight } from "@mui/system";
 import React from "react";
+import { Box } from "@mui/system";
+import { Container, Stack, Typography } from "@mui/material";
 import { ButtonApp } from "../../../components/ButtonApp/ButtonApp";
-import img from "./../../../assets/images/manual-bg.png";
+import { icons } from "../../../assets/icons";
 import style from "./WebSection.module.css";
-import logo from "./../../../assets/icons/logo_violet.svg";
-export const WebSection = ({ image, title, text, buttonTitle, preTitle }) => {
+import { Link } from "react-router-dom";
+
+export const WebSection = ({ image, title, text, buttonTitle, preTitle, route }) => {
   const size = buttonTitle === "Войти" ? "96px" : "40px";
   return (
     <div
@@ -16,26 +17,7 @@ export const WebSection = ({ image, title, text, buttonTitle, preTitle }) => {
         minHeight: "100vh",
       }}
     >
-      {/* <img
-				className={style.manual__bg__image} src={image} alt="image" /> */}
       <Container>
-        {preTitle ? (
-					<Stack
-					className={style.manual__logo}>
-            <img
-              src={logo}
-              alt="logo"
-              style={{
-                width: "80px",
-              }}
-            />
-						<Typography
-							sx={{
-								fontSize: '24px'
-							}}
-						>Med Tech</Typography>
-          </Stack>
-        ) : null}
         <Stack
           className={style.manual__content}
           sx={{
@@ -43,6 +25,28 @@ export const WebSection = ({ image, title, text, buttonTitle, preTitle }) => {
             width: "100%",
           }}
         >
+          {preTitle ? (
+						<Stack className={style.manual__logo} alignItems={"start"} sx={{
+						}}>
+              <img
+                src={icons.medTechViolet}
+                alt="logo"
+                style={{
+                  width: "80px",
+                }}
+              />
+              <Typography
+                sx={{
+                  fontSize: "24px",
+                  fontWeight: 700,
+                  lineHeight: "100%",
+                  color: "#68B7EC",
+                }}
+              >
+                Med Tech
+              </Typography>
+            </Stack>
+          ) : null}
           <Typography
             component="h4"
             sx={{
@@ -84,8 +88,10 @@ export const WebSection = ({ image, title, text, buttonTitle, preTitle }) => {
               maxWidth: "400px",
               width: "100%",
             }}
-          >
-            <ButtonApp title={buttonTitle} variant="contained" />
+					>
+						<Link to={route} children={ 
+							<ButtonApp title={buttonTitle} variant="contained" />
+						}/>
           </Box>
         </Stack>
       </Container>
