@@ -89,8 +89,14 @@ export const WebSection = ({ image, title, text, buttonTitle, preTitle, route })
               width: "100%",
             }}
 					>
-						<Link to={route} children={ 
-							<ButtonApp title={buttonTitle} variant="contained" />
+						<Link to={route}
+							style={{
+								textDecoration: 'none'
+							}}
+							children={ 
+							<ButtonApp title={buttonTitle} variant="contained" style={{
+								height: '44px'
+							}} />
 						}/>
           </Box>
         </Stack>

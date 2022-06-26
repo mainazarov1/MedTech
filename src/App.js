@@ -19,8 +19,8 @@ function App() {
 				{/* <DocWeb /> */}
 				{/* <CalendarCustom /> */}
 				<Routes>
-					<Route path="/" element={<DocWeb />} />
-					<Route path='/auth' element={<Auth />} />
+					<Route path="/manual" element={<DocWeb />} />
+					<Route path='/' element={<Auth />} />
 					<Route path='/*' element={<Main />} />
 				</Routes>
 			</>
