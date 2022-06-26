@@ -1,0 +1,15 @@
+.tableContainer {
+	width: 50%;
+  /* height: calc(100vh-310px); */
+}
+.tableBtn{
+	width: 30px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
+	border: 0;
+	outline: 0;
+	cursor: pointer;
+}
