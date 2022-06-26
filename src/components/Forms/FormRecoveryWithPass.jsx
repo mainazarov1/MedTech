@@ -64,7 +64,10 @@ export const FormRecoveryWithPass = ({ prevStep, nextStep }) => {
         variant="contained"
         title="Продолжить"
         type="submit"
-        disabled={false}
+				disabled={false}
+				style={{
+					height: '50px',
+				}}
         // fullWidth={true}
       />
     </Box>

@@ -1,9 +1,9 @@
 .header {
 	background-color: #AECDFD;
 	color: #FFFFFF;
-	padding: 10px 0;
 }
 .header__wrap{
+	padding: 10px 0;
 }
 .header__logo{
 	display: flex;

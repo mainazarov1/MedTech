@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { ButtonApp } from "../ButtonApp/ButtonApp";
 import { InputAppContainer } from "../InputApp/InputAppContainer";
 
@@ -41,7 +42,7 @@ export const FormSignIn = ({ nextStep }) => {
   });
   const onSubmit = (data) => {
     console.log(data);
-    nextStep();
+		nextStep();
   };
   return (
     <Box
@@ -75,8 +76,8 @@ export const FormSignIn = ({ nextStep }) => {
         {/* <Input /> */}
         <InputAppContainer
           label="Логин"
-					type="email"
-					required={true}
+          type="email"
+          required={true}
           // {...register("email")}
         />
         <InputAppContainer
@@ -86,19 +87,30 @@ export const FormSignIn = ({ nextStep }) => {
           icon={<VisibilityOutlined />}
         />
       </Stack>
-      <ButtonApp
-        // className='auth__button'
-				variant="contained"
-				title="Войти"
-				type="submit"
-				fullWidth={true}
-				disabled={false}
-				width={'100%'}
-      />
+      <Link
+        to={"manual"}
+        style={{
+          textDecoration: "none",
+        }}
+      >
+        <ButtonApp
+          // className='auth__button'
+          variant="contained"
+          title="Войти"
+          type="submit"
+          fullWidth={true}
+          disabled={false}
+          width={"100%"}
+          style={{
+            height: "50px",
+          }}
+        />
+      </Link>
       <Stack
-        mt={"24px"}
+				mt={"24px"}
+				alignItems='center'
         children={
-          <ButtonApp
+					<ButtonApp
             variant="text"
             title="Забыли пароль?"
             fullWidth="false"

@@ -47,6 +47,9 @@ export const FormRecoveryWithLogin = ({prevStep, nextStep}) => {
         title="Продолжить"
         type="submit"
 				disabled={false}
+				style={{
+					height: '50px',
+				}}
 				// fullWidth={true}
       />
     </Box>
