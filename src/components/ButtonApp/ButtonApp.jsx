@@ -4,55 +4,58 @@ import { Button, styled } from "@mui/material";
 import styles from './ButtonApp.module.css';
 
 export const ButtonApp = (
-  {
-    title,
-    type,
-    variant,
-    icon,
-    disabled,
-    colorText,
-    hover,
-    prevStep,
-    nextStep,
+	{
+		title,
+		type,
+		variant,
+		icon,
+		disabled,
+		colorText,
+		hover,
+		prevStep,
+		nextStep,
 		style,
 		iconWidth,
-		fullWidth
-  }
+		fullWidth,
+		isActive
+	}
 ) => {
 	// const { height } = style; 
-  // const CssButton = styled(Button)({
-  //   textTransform: "capitalize",
-  //   // height: height || "50px",
-  //   // maxWidth: "400px",
-  //   // width: "100%",
+	// const CssButton = styled(Button)({
+	//   textTransform: "capitalize",
+	//   // height: height || "50px",
+	//   // maxWidth: "400px",
+	//   // width: "100%",
 	// 	minWidth: 'fit-content',
 	// 	textDecoration: 'none',
-  //   "&.MuiButton-contained": {
-  //     background: "#68B7EC",
-  //     boxShadow: "none",
-  //     "&:disabled": {
-  //       background: "#A8A8A8",
-  //     },
-  //     "&:hover": {
-  //       opacity: 0.9,
-  //     },
-  //   },
-  //   "&.MuiButton-text": {
-  //     color: colorText || "#68B7EC",
-  //     background: "transparent",
-  //     "&:active": {
-  //       background: "transparent",
-  //     },
-  //     // '&:hover': {
-  //     // 	background: 'transparent',
-  //     // 	border: '1px solid #68B7EC'
-  //     // }
-  //   },
-  //   "&.Mui-focusVisible": {
-  //     opacity: 0.9,
-  //   },
-  // });
-
+	//   "&.MuiButton-contained": {
+	//     background: "#68B7EC",
+	//     boxShadow: "none",
+	//     "&:disabled": {
+	//       background: "#A8A8A8",
+	//     },
+	//     "&:hover": {
+	//       opacity: 0.9,
+	//     },
+	//   },
+	//   "&.MuiButton-text": {
+	//     color: colorText || "#68B7EC",
+	//     background: "transparent",
+	//     "&:active": {
+	//       background: "transparent",
+	//     },
+	//     // '&:hover': {
+	//     // 	background: 'transparent',
+	//     // 	border: '1px solid #68B7EC'
+	//     // }
+	//   },
+	//   "&.Mui-focusVisible": {
+	//     opacity: 0.9,
+	//   },
+	// });
+	console.log('active: ', isActive)
+	console.log('icon: ',icon)
+	
 	return (
 		<Button
 			className={styles.btn}
@@ -61,16 +64,20 @@ export const ButtonApp = (
 			fullWidth={true}
 			disabled={disabled}
 			startIcon={
-				icon && <img src={icon} width={iconWidth} />
+				icon
+				// && <img src={icon} width={iconWidth}
+				// 	style={{
+				// 		fill: !isActive ? '#000' : '#fff'
+				// 	}} />
 			}
-      hover={hover}
+			hover={hover}
 			onClick={prevStep || nextStep}
 			style={{
 				...style
 			}}
-			// onClick={}
-    >
-      {title}
-    </Button>
-  );
+		// onClick={}
+		>
+			{title}
+		</Button>
+	);
 };

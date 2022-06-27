@@ -4,8 +4,11 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { ButtonApp } from "../ButtonApp/ButtonApp";
 import { MyButton } from "../MyButton/MyButton";
+import IconCalendar from './../../assets/icons/IconCalendar'
 import { icons } from "./../../assets/icons";
 import styles from "./Navigation.module.css";
+import IconCheckList from "../../assets/icons/IconCheckList";
+import IconUser from "../../assets/icons/IconUser";
 export const Navigation = () => {
 	return (
 		<nav>
@@ -25,18 +28,19 @@ export const Navigation = () => {
 						children={({ isActive }) => (
 							<ButtonApp
 								className={styles.btn}
-								title={"Рассписание"}
+								title={"Расписание"}
 								type={""}
 								variant={isActive ? 'contained' : 'text'}
-								icon={icons.calendar}
+								icon={<IconCalendar props={isActive ? '#FFFFFF' : '#4C464B'} />}
 								iconWidth="22px"
-								colorText={""}
+								isActive={isActive}
+								color={isActive ? '#FFFFFF' : '#4C464B'}
 								hover={""}
 								fullWidth={false}
 								style={{
 									width: "fit-content",
 									height: "44px",
-									textTransform: 'inherit'
+									color: isActive ? '#FFFFFF' : '#4C464B'
 								}}
 							/>
 						)}
@@ -50,14 +54,16 @@ export const Navigation = () => {
 								title={"Чек лист"}
 								type={""}
 								variant={isActive ? 'contained' : 'text'}
-								icon={icons.checkList}
+								icon={<IconCheckList props={isActive ? '#FFFFFF' : '#4C464B'} />}
 								iconWidth="22px"
-								colorText={""}
+								isActive={isActive}
+								color={isActive ? '#FFFFFF' : '#4C464B'}
 								hover={""}
-								fullWidth={true}
+								fullWidth={false}
 								style={{
-									height: "44px",
 									width: "fit-content",
+									height: "44px",
+									color: isActive ? '#FFFFFF' : '#4C464B'
 								}}
 							/>
 						)}
@@ -71,14 +77,16 @@ export const Navigation = () => {
 								title={"Пользователи"}
 								type={""}
 								variant={isActive ? 'contained' : 'text'}
-								icon={icons.checkList}
-								iconWidth={"22px"}
-								colorText={""}
+								icon={<IconUser props={isActive ? '#FFFFFF' : '#4C464B'} />}
+								iconWidth="22px"
+								isActive={isActive}
+								color={isActive ? '#FFFFFF' : '#4C464B'}
 								hover={""}
 								fullWidth={false}
 								style={{
+									width: "fit-content",
 									height: "44px",
-									width:'fit-content'
+									color: isActive ? '#FFFFFF' : '#4C464B'
 								}}
 							/>
 						)}
