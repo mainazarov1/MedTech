@@ -10,8 +10,7 @@ import {
 import React from "react";
 import { ButtonApp } from "../ButtonApp/ButtonApp";
 import { InputAppContainer } from "../InputApp/InputAppContainer";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import { icons } from "../../assets/icons";
+import IconArrow from "../../assets/icons/IconArrow";
 export const FormRecoveryWithPass = ({ prevStep, nextStep }) => {
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
@@ -36,10 +35,13 @@ export const FormRecoveryWithPass = ({ prevStep, nextStep }) => {
           <ButtonApp
             variant="text"
             colorText="black"
-            icon={icons.arrow}
+            icon={<IconArrow props='#4C464B'/>}
             title="Назад"
             hover={false}
-            prevStep={prevStep}
+						prevStep={prevStep}
+						style={{
+							color: '#4C464B'
+						}}
           />
         }
       />

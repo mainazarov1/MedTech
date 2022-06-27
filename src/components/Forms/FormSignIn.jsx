@@ -1,9 +1,7 @@
 import { VisibilityOutlined } from "@mui/icons-material";
 import {
   Box,
-  Checkbox,
   createTheme,
-  Input,
   responsiveFontSizes,
   Stack,
   ThemeProvider,

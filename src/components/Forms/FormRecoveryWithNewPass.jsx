@@ -3,9 +3,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 import { ButtonApp } from "../ButtonApp/ButtonApp";
 import { InputAppContainer } from "../InputApp/InputAppContainer";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import { icons } from "../../assets/icons";
-import { Link } from "react-router-dom";
+import IconArrow from "../../assets/icons/IconArrow";
 export const FormRecoveryWithNewPass = ({ prevStep }) => {
   return (
     <Box
@@ -28,10 +26,13 @@ export const FormRecoveryWithNewPass = ({ prevStep }) => {
           <ButtonApp
             variant="text"
             colorText="black"
-            icon={icons.arrow}
+            icon={<IconArrow props='#4C464B'/>}
             title="Назад"
             hover={false}
-            prevStep={prevStep}
+						prevStep={prevStep}
+						style={{
+							color: '#4C464B'
+						}}
           />
         }
       />

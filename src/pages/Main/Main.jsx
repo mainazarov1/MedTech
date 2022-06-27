@@ -29,7 +29,8 @@ export const Main = () => {
         <Container
 					maxWidth="xl"
 					sx={{
-						height: calcHeight(290),
+						// height: calcHeight(290),
+						height: "100%",
 						paddingTop: "30px",
 						paddingBottom: "30px",
 					}}
