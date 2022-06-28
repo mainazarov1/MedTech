@@ -91,20 +91,20 @@ export const TableCustom = () => {
 			className={styles.tableContainer}
 			sx={{
 				maxHeight: calcHeight(360),
-				// "&::-webkit-scrollbar": {
-				// 	width: 8,
-				// 	height: '10vh',
-				// },
-				// "&::-webkit-scrollbar-track": {
-				// 	backgroundColor: "#F1F0F3",
-				// 	borderRadius: 12,
-				// 	height: '10vh'
-				// },
-				// "&::-webkit-scrollbar-thumb": {
-				// 	backgroundColor: "#CDC5CB",
-				// 	borderRadius: 12,
-				// 	height: '10vh'
-				// }
+				"&::-webkit-scrollbar": {
+					width: 8,
+					height: '10vh',
+				},
+				"&::-webkit-scrollbar-track": {
+					backgroundColor: "#F1F0F3",
+					borderRadius: 12,
+					height: '10vh'
+				},
+				"&::-webkit-scrollbar-thumb": {
+					backgroundColor: "#CDC5CB",
+					borderRadius: 12,
+					height: '10vh'
+				}
 			}}
 		>
 			<Table
@@ -149,7 +149,7 @@ export const TableCustom = () => {
 						// background: rows.length === 0 ? `url(${images.list}) center center no-repeat` : 'none',
 						// backgroundSize: 'cover'
 						overflowY: 'scroll',
-						
+
 					}}
 					rows={1}
 					columns={1}
