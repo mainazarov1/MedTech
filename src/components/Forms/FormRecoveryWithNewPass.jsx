@@ -3,39 +3,40 @@ import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 import { ButtonApp } from "../ButtonApp/ButtonApp";
 import { InputAppContainer } from "../InputApp/InputAppContainer";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import { icons } from "../../assets/icons";
-export const FormRecoveryWithNewPass = ({prevStep}) => {
+import IconArrow from "../../assets/icons/IconArrow";
+export const FormRecoveryWithNewPass = ({ prevStep }) => {
   return (
-		<Box
-			position='relative'
-			maxWidth="400px"
-			height='450px'
+    <Box
+      position="relative"
+      maxWidth="400px"
+      height="450px"
       width="calc(100% - 50px)"
       m="auto"
       p="25px"
-			component="form"
-			// onSubmit={nextStep}
+      component="form"
+      // onSubmit={nextStep}
 
       // onSubmit={handleSubmit(onSubmit)}
     >
-			<Stack
-				position='absolute'
-				top='-100px'
+      <Stack
+        position="absolute"
+        top="-100px"
         mt={"24px"}
         children={
           <ButtonApp
-						variant="text"
-						colorText='black'
-            icon={icons.arrow}
-						title="Назад"
-						hover={false}
+            variant="text"
+            colorText="black"
+            icon={<IconArrow props='#4C464B'/>}
+            title="Назад"
+            hover={false}
 						prevStep={prevStep}
+						style={{
+							color: '#4C464B'
+						}}
           />
         }
       />
-			<Typography variant="h3"
-				pb="40px">
+      <Typography variant="h3" pb="40px">
         Восстоновление пароля
       </Typography>
       <Stack direction="column" spacing="20px" pb="60px">
@@ -52,14 +53,19 @@ export const FormRecoveryWithNewPass = ({prevStep}) => {
           icon={<VisibilityOutlined />}
         />
       </Stack>
-      <ButtonApp
-        // className='auth__button'
-        variant="contained"
-        title="Продолжить"
-        type="submit"
-				disabled={false}
-				// fullWidth={true}
-      />
+		
+        <ButtonApp
+          // className='auth__button'
+          variant="contained"
+          title="Продолжить"
+          type="submit"
+					disabled={false}
+					style={{
+						height: '50px',
+					}}
+          // fullWidth={true}
+        />
+      
     </Box>
   );
 };

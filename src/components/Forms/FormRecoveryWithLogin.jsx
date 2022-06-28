@@ -1,9 +1,8 @@
-import { VisibilityOutlined } from "@mui/icons-material";
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 import { ButtonApp } from "../ButtonApp/ButtonApp";
 import { InputAppContainer } from "../InputApp/InputAppContainer";
-import { icons } from "../../assets/icons";
+import IconArrow from "../../assets/icons/IconArrow";
 export const FormRecoveryWithLogin = ({prevStep, nextStep}) => {
   return (
 		<Box
@@ -24,10 +23,13 @@ export const FormRecoveryWithLogin = ({prevStep, nextStep}) => {
           <ButtonApp
 						variant="text"
 						colorText='black'
-            icon={icons.arrow}
+            icon={<IconArrow props='#4C464B'/>}
 						title="Назад"
 						hover={false}
 						prevStep={prevStep}
+						style={{
+							color: '#4C464B'
+						}}
           />
         }
       />
@@ -47,6 +49,9 @@ export const FormRecoveryWithLogin = ({prevStep, nextStep}) => {
         title="Продолжить"
         type="submit"
 				disabled={false}
+				style={{
+					height: '50px',
+				}}
 				// fullWidth={true}
       />
     </Box>

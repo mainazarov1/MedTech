@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { useState } from "react";
 import {
   FormSignIn,
@@ -37,12 +37,12 @@ const Auth = () => {
     }
   };
   return (
-    <Grid container height="100%">
+    <Grid container height="100vh">
       <Grid item xs={0} sm={6}>
         <div className={style.auth__bg}></div>
       </Grid>
       <Grid item xs={12} sm={6} display="flex">
-        {view()}
+				{view()}
       </Grid>
     </Grid>
   );
