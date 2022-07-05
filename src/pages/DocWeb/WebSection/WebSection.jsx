@@ -19,7 +19,6 @@ export const WebSection = ({ image, title, text, buttonTitle, preTitle, route })
 		>
 			<Container
 				maxWidth="xl"
-
 			>
 				<Stack
 					className={style.manual__content}
@@ -29,13 +28,18 @@ export const WebSection = ({ image, title, text, buttonTitle, preTitle, route })
 					}}
 				>
 					{preTitle ? (
-						<Stack className={style.manual__logo} alignItems={"start"} sx={{
-						}}>
+						<Stack className={style.manual__logo}
+							alignItems={"start"}
+							sx={{
+								width: 'fit-content'
+							}}
+						>
 							<img
 								src={icons.medTechViolet}
 								alt="logo"
 								style={{
 									width: "80px",
+									margin: '0 auto'
 								}}
 							/>
 							<Typography

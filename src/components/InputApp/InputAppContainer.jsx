@@ -7,7 +7,6 @@ export const InputAppContainer = ({ label, type, icon, required, ...props }) => 
 	const handleClick = (e) => {
 		e.preventDefault();
 		setPasswordShow(!passwordShow);
-
 	}
 	console.log(props);
   return (

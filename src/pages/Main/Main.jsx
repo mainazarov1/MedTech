@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
@@ -6,8 +6,7 @@ import { CheckList } from "../../components/CheckList/CheckList";
 import { Header } from "../../components/Header/Header";
 import { Navigation } from "../../components/Navigation/Navigation";
 import { Schedule } from "../../components/Schedule/Schedule";
-import { Users } from "../../components/Users/Users";
-import { DocWeb } from "../DocWeb/DocWeb";
+import Users from "./../Users/Users";
 
 const calcHeight = (px) => {
 	const windowHeight = window.innerHeight;

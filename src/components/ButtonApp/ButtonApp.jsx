@@ -8,6 +8,8 @@ export const ButtonApp = (
 		title,
 		type,
 		variant,
+		startIcon,
+		endIcon,
 		icon,
 		disabled,
 		colorText,
@@ -63,13 +65,13 @@ export const ButtonApp = (
 			variant={variant}
 			fullWidth={true}
 			disabled={disabled}
-			startIcon={
-				icon
+			startIcon={ startIcon && icon
 				// && <img src={icon} width={iconWidth}
 				// 	style={{
 				// 		fill: !isActive ? '#000' : '#fff'
 				// 	}} />
 			}
+			endIcon={ endIcon ? icon : null}
 			hover={hover}
 			onClick={prevStep || nextStep}
 			style={{

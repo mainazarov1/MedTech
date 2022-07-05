@@ -31,6 +31,7 @@ export const Navigation = () => {
 								title={"Расписание"}
 								type={""}
 								variant={isActive ? 'contained' : 'text'}
+								startIcon={true}
 								icon={<IconCalendar props={isActive ? '#FFFFFF' : '#4C464B'} />}
 								iconWidth="22px"
 								isActive={isActive}
@@ -54,6 +55,7 @@ export const Navigation = () => {
 								title={"Чек лист"}
 								type={""}
 								variant={isActive ? 'contained' : 'text'}
+								startIcon={true}
 								icon={<IconCheckList props={isActive ? '#FFFFFF' : '#4C464B'} />}
 								iconWidth="22px"
 								isActive={isActive}
@@ -77,6 +79,7 @@ export const Navigation = () => {
 								title={"Пользователи"}
 								type={""}
 								variant={isActive ? 'contained' : 'text'}
+								startIcon={true}
 								icon={<IconUser props={isActive ? '#FFFFFF' : '#4C464B'} />}
 								iconWidth="22px"
 								isActive={isActive}

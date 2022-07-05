@@ -35,7 +35,8 @@ export const FormRecoveryWithPass = ({ prevStep, nextStep }) => {
           <ButtonApp
             variant="text"
             colorText="black"
-            icon={<IconArrow props='#4C464B'/>}
+						icon={<IconArrow props='#4C464B' />}
+						startIcon={true}
             title="Назад"
             hover={false}
 						prevStep={prevStep}
