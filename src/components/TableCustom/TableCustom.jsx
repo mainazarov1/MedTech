@@ -22,23 +22,23 @@ export const TableCustom = ({columns,rows}) => {
 	return (
 		<TableContainer
 			className={styles.tableContainer}
-			sx={{
-				maxHeight: calcHeight(360),
-				"&::-webkit-scrollbar": {
-					width: 8,
-					height: '10vh',
-				},
-				"&::-webkit-scrollbar-track": {
-					backgroundColor: "#F1F0F3",
-					borderRadius: 12,
-					height: '10vh'
-				},
-				"&::-webkit-scrollbar-thumb": {
-					backgroundColor: "#CDC5CB",
-					borderRadius: 12,
-					height: '10vh'
-				}
-			}}
+			// sx={{
+			// 	maxHeight: calcHeight(360),
+			// 	"&::-webkit-scrollbar": {
+			// 		width: 8,
+			// 		height: '10vh',
+			// 	},
+			// 	"&::-webkit-scrollbar-track": {
+			// 		backgroundColor: "#F1F0F3",
+			// 		borderRadius: 12,
+			// 		height: '10vh'
+			// 	},
+			// 	"&::-webkit-scrollbar-thumb": {
+			// 		backgroundColor: "#CDC5CB",
+			// 		borderRadius: 12,
+			// 		height: '10vh'
+			// 	}
+			// }}
 		>
 			<Table
 				stickyHeader aria-label="sticky table"

@@ -4,6 +4,9 @@ import manualImg3 from './manual-bg3.jpeg'
 import manualImg4 from './manual-bg4.jpeg'
 import list from './list.svg'
 import consultation from './consultation.svg'
+import avatar from './avatar.svg'
+import doctor from './doctor.svg'
+
 export const images = {
 	manualImg,
 	manualImg2,
@@ -11,4 +14,6 @@ export const images = {
 	manualImg4,
 	list,
 	consultation,
+	avatar,
+	doctor,
 }

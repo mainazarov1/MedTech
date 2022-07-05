@@ -4,7 +4,7 @@ import IconDownload from '../../assets/icons/IconDownload'
 import { ButtonApp } from '../../components/ButtonApp/ButtonApp'
 import { SelectBtn } from '../../components/Select/Select'
 import { TableCustom } from '../../components/TableCustom/TableCustom'
-
+import styles from './Users.module.scss'
 const Users = () => {
 	const roles = [
 		"Администратор",
@@ -20,24 +20,29 @@ const Users = () => {
     "Пешнограй К. Р",
 	];	const columns = [
 		{ id: "number", label: "№", width: 35 },
-		{ id: "doctor", label: "ФИО врача", minWidth: 150 },
+		{ id: "doctor", label: "ФИО врача", minWidth: 200 },
 		{
-			id: "patient",
-			label: "ФИО пациента",
-			minWidth: 150,
-			format: (value) => value.toLocaleString("en-US"),
+			id: "phone",
+			label: "Номер телефона",
+			minWidth: 200,
+			// format: (value) => value.toLocaleString("en-US"),
 		},
 		{
-			id: "date",
-			label: "Дата",
-			minWidth: 100,
-			format: (value) => value.toLocaleString("en-US"),
+			id: "email",
+			label: "Электронная почта",
+			minWidth: 250,
+			// format: (value) => value.toLocaleString("en-US"),
 		},
 		{
-			id: "time",
-			label: "Время",
-			width: 100,
+			id: "patients",
+			label: "Пациенты",
+			width: 150,
 			format: (value) => value.toFixed(2),
+		},
+		{
+			id: 'workshift',
+			label: 'График работы',
+			width: 100,
 		},
 		{
 			id: 'option',
@@ -45,8 +50,8 @@ const Users = () => {
 			width: 20,
 		}
 	];
-	function createData(number, doctor, patient, date, time) {
-		return { number, doctor, patient, date, time };
+	function createData(number, doctor, phone, email, patients, workshift, option) {
+		return { number, doctor, phone, email, patients, workshift, option };
 	}
 	const rows = [
 		createData("001", "Сабиров Ш.И", "Мансурова А.П", "13.05.2022", "09:50"),
@@ -87,21 +92,15 @@ const Users = () => {
 		createData("006", "Сабиров Ш.И", "Мансурова А.П", "13.05.2022", "09:50"),
 	];
 	return (
-		<section>
+		<section className={styles.users}>
 			{/* <Stack direction={{ xs: 'column', lg: 'row' }} gap="20px"> */}
 			<Stack
+				className={styles.users__wrapper}
 				flexBasis={'100%'}
-				// flexShrink={1}
-				sx={{
-					background: "#FFFFFF",
-					padding: '30px 25px',
-					borderRadius: '10px',
-					border: '1px solid #F1F0F3',
-				}}
 			>
 				<Typography
 					component={"h3"}
-					children={"Список запланированных встреч"}
+					children={"Список пользователей"}
 					sx={{
 						fontSize: "24px",
 					}}
@@ -119,7 +118,6 @@ const Users = () => {
 							variant='outlined'
 							endIcon={true}
 							icon={<IconDownload props='#68B7EC' />}
-
 							iconWidth="22px"
 							hover={""}
 							fullWidth={false}
@@ -129,7 +127,7 @@ const Users = () => {
 								color: '#68B7EC'
 							}}
 						/>
-						<SelectBtn label={"Пациент"} values={roles} width='fit-content' />
+						<SelectBtn label={"Добавить пользователя"} values={roles} width='fit-content' radio={true} />
 					</Stack>
 				</Stack>
 				<TableCustom columns={columns} rows={rows} radio={true} />

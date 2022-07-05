@@ -19,6 +19,19 @@
 	);
 	/* z-index: 0; */
 }
+/* .manual__page::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		to bottom,
+		rgba(255, 255, 255, 1) 0%,
+		rgba(255, 255, 255, 0.2) 20%,
+		rgba(255, 255, 255, 0.2) 80%,
+		rgba(255, 255, 255, 1) 100%
+	);
+} */
 .manual__logo{
 	position: relative;
 	align-items: flex-start;

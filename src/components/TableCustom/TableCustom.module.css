@@ -1,8 +1,23 @@
 .tableContainer {
 	width: 50%;
-  /* height: calc(100vh-310px); */
+	/* height: calc(100vh-310px); */
+	max-height: calc(100vh - 360px);
 }
-.tableBtn{
+.tableContainer::-webkit-scrollbar {
+	width: 8px;
+	height: 10vh;
+}
+.tableContainer::-webkit-scrollbar-track {
+	background-color: #f1f0f3;
+	border-radius: 12px;
+	height: 100%;
+}
+.tableContainer::-webkit-scrollbar-thumb {
+	background-color: #cdc5cb;
+	border-radius: 12px;
+	height: 30%;
+}
+.tableBtn {
 	width: 30px;
 	height: 30px;
 	display: flex;
