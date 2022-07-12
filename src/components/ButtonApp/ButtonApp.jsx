@@ -55,8 +55,8 @@ export const ButtonApp = (
 	//     opacity: 0.9,
 	//   },
 	// });
-	console.log('active: ', isActive)
-	console.log('icon: ',icon)
+	// console.log('active: ', isActive)
+	// console.log('icon: ',icon)
 	
 	return (
 		<Button

@@ -1,27 +1,35 @@
 .label {
-	margin-left: 10px;
-	font-family: "SF Pro Display";
-	font-style: normal;
-	font-weight: 700;
-	font-size: 12px;
-	line-height: 100%;
-	color: #a8a8a8;
-}
-.input{
-	background: #f7f3f7;
-	border-radius: 4px;
+  margin-left: 10px;
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 100%;
+  color: #a8a8a8;
 }
 
-.input input{
-	border:0;
-	height: 50px;
-	padding: 0 14px;
-	border-radius: 4px;
+.input {
+  background: #f7f3f7;
+  border-radius: 4px;
 }
-.input fieldset{
-	border: 1px solid #F1F0F3;
+.input::before {
+  border-bottom: none;
 }
-.input:hover fieldset{
-	/* border: 1px solid red; */
-	/* border: 0; */
+.input.Mui-Input-rootinput::before {
+  all: unset;
 }
+.input input {
+  border: 10px;
+  height: 50px;
+  padding: 0 14px;
+  border-radius: 4px;
+}
+
+.input fieldset {
+  border: 1px solid #F1F0F3;
+}
+
+.input:hover fieldset {
+  /* border: 1px solid red; */
+  /* border: 0; */
+}/*# sourceMappingURL=InputApp.module.css.map */
