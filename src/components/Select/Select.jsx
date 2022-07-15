@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import styles from './Select.module.css'
-export const SelectBtn = ({ label, values, radio = false }) => {
+export const SelectBtn = ({ label, values, radio = false}) => {
 	const [name, setName] = useState("");
 	const handleChange = (event) => {
 		setName(event.target.value);

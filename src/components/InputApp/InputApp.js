@@ -35,6 +35,7 @@ export const InputApp = ({
       sx={{}}
 			type={type}
 			{...field}
+			// onChange={(e)=>field.onChange(e.target.value)}
       InputProps={
         icon && {
           endAdornment: (

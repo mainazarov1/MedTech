@@ -11,8 +11,10 @@ export const CalendarCustom = () => {
 			onChange={onChange}
 			value={value}
 			defaultView={"month"}
-			onClickDay={() => alert('click')}
-			view={{}}
+			onClickDay={(e) => {
+				alert(new Date(e))
+			}}
+			// view={}
 			// style={{
 			// 	flexBasic: '100%'
 			// }}

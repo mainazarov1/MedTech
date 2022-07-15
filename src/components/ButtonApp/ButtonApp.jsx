@@ -5,6 +5,7 @@ import styles from './ButtonApp.module.css';
 
 export const ButtonApp = (
 	{
+		className,
 		title,
 		type,
 		variant,
@@ -60,7 +61,7 @@ export const ButtonApp = (
 	
 	return (
 		<Button
-			className={styles.btn}
+			className={styles.btn + ' ' + className}
 			type={type}
 			variant={variant}
 			fullWidth={true}
