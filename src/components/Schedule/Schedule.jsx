@@ -3,6 +3,7 @@ import React from "react";
 import { CalendarCustom } from "../Calendar/CalendarCustom";
 import { SelectBtn } from "../Select/Select";
 import { TableCustom } from "../TableCustom/TableCustom";
+import { WorkShift } from "../WorkShift/WorkShift";
 import style from "./Schedule.module.css";
 
 export const Schedule = () => {
@@ -103,7 +104,6 @@ export const Schedule = () => {
 						}}
 					/>
 					<Stack direction="row" gap={"20px"} marginBottom={"35px"}>
-
 						<SelectBtn label={"Врач"} values={names} />
 						<SelectBtn label={"Пациент"} values={names} />
 					</Stack>
@@ -123,6 +123,7 @@ export const Schedule = () => {
 					}}
 				>
 					<CalendarCustom />
+					<WorkShift />
 				</Stack>
 			</Stack>
 		</section>

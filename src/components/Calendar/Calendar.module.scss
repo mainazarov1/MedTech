@@ -1,14 +1,10 @@
-@import url(./../../../node_modules/react-calendar/dist/Calendar.css);
-.calendar {
-	// min-width: 400px;
-	// max-width: 455px;
-	// width: 433px;
+// @import url(./../../../node_modules/react-calendar/dist/Calendar.css);
+.react-calendar {
 	width: 100%;
-	height: 100%;
+	max-width: 400px;
+	// height: 100%;
 	border: none;
 	border-radius: 10px;
-}
-.react-calendar {
 	&__month-view {
 		&__weekdays {
 			justify-content: space-between;

@@ -20,7 +20,8 @@ export const ButtonApp = (
 		style,
 		iconWidth,
 		fullWidth,
-		isActive
+		isActive,
+		handleClick
 	}
 ) => {
 	// const { height } = style; 
@@ -58,7 +59,7 @@ export const ButtonApp = (
 	// });
 	// console.log('active: ', isActive)
 	// console.log('icon: ',icon)
-	
+
 	return (
 		<Button
 			className={styles.btn + ' ' + className}
@@ -66,15 +67,15 @@ export const ButtonApp = (
 			variant={variant}
 			fullWidth={true}
 			disabled={disabled}
-			startIcon={ startIcon && icon
+			startIcon={startIcon && icon
 				// && <img src={icon} width={iconWidth}
 				// 	style={{
 				// 		fill: !isActive ? '#000' : '#fff'
 				// 	}} />
 			}
-			endIcon={ endIcon ? icon : null}
+			endIcon={endIcon ? icon : null}
 			hover={hover}
-			onClick={prevStep || nextStep}
+			onClick={(handleClick && (()=> { handleClick(title) })) || (prevStep || nextStep)}
 			style={{
 				...style
 			}}

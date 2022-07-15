@@ -1,0 +1,22 @@
+.workshift {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  -moz-column-gap: calc((100% - 800px) / 3);
+       column-gap: calc((100% - 800px) / 3);
+  row-gap: 11px;
+}
+.workshift__btn {
+  width: 90px;
+  height: 39px;
+  background: #68b7ec;
+  border: 1px solid #68b7ec;
+  border-radius: 4px;
+  font-family: "SF Pro Display";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+  cursor: pointer;
+}/*# sourceMappingURL=WorkShift.module.css.map */
