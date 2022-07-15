@@ -7,7 +7,8 @@ import {
 	Select,
 } from "@mui/material";
 import React, { useState } from "react";
-import styles from './Select.module.css'
+import styles from './Select.module.css';
+
 export const SelectBtn = ({ label, values, radio = false }) => {
 	const [name, setName] = useState("");
 	const handleChange = (event) => {
@@ -19,7 +20,7 @@ export const SelectBtn = ({ label, values, radio = false }) => {
 	function showNames() {
 		return values.map((el, i) => (
 			<MenuItem key={i} value={el}
-				onClick={radio && (()=> { handleClick(el) })}
+				onClick={radio && (() => { handleClick(el) })}
 			>
 				{radio
 					? <><Radio />{el}</>
@@ -46,16 +47,16 @@ export const SelectBtn = ({ label, values, radio = false }) => {
 				value={name}
 				onChange={!radio && handleChange}
 				displayEmpty
-				// input={<InputApp/>}
-				// inputProps={{ 'aria-label': 'Without label' }}
-				// sx={{
-				// 	background: "#F7F3F7",
-				// 	width: "200px",
-				// 	height: "44px",
-				// 	border: "1px solid #F1F0F3",
-				// 	borderRadius: "4px",
-				// 	color: "black",
-				// }}
+			// input={<InputApp/>}
+			// inputProps={{ 'aria-label': 'Without label' }}
+			// sx={{
+			// 	background: "#F7F3F7",
+			// 	width: "200px",
+			// 	height: "44px",
+			// 	border: "1px solid #F1F0F3",
+			// 	borderRadius: "4px",
+			// 	color: "black",
+			// }}
 			// IconComponent={<ArrowDownward/>}
 			>
 				<MenuItem value=''>{label}</MenuItem>

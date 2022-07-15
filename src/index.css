@@ -1,18 +1,26 @@
+/* import styles */
 @import './assets/fonts/SF\ Dispaly\ Font/stylesheet.css';
 @import '../node_modules/normalize.css/normalize.css';
-/* @import './../node_modules/@mui/material/Button'; */
-@import '../node_modules/react-calendar/dist/Calendar.css';
+/* @import '../node_modules/react-calendar/dist/Calendar.css'; */
+@import url(./../node_modules/react-calendar/dist/Calendar.css);
 @import './components/Calendar/Calendar.module.css';
 @import './components/TableCustom/TableCustom.module.css';
 @import './components/ButtonApp/ButtonApp.module.css';
-/* @import './components/Calendar/Calendar.css'; */
-/* @import './pages/DocWeb/WebSection/WebSection.css'; */
-/* @import './components/SignIn/style.css'; */
-/* @import './components/InputMUI/styles.module.css'; */
-*{
+@import './components/Forms/Forms.module.css';
+@import './components/Toast/Toast.css';
+
+* {
 	font-family: 'SF Pro Display'!important;
 	font-weight: 400;
 }
 .App{
 	height: 100vh;
+}
+/* toastify */
+.toastify{
+	background-color: #F7F3F7!important;
+	color: #4C464B!important;
+}
+.toastify__progress_error{
+	background-color: #D42027!important;
 }

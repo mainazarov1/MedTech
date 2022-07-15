@@ -1,72 +1,112 @@
+// Libraries and dependencies
+import { Box, Stack, Typography, } from "@mui/material";
 import { VisibilityOutlined } from "@mui/icons-material";
-import { Box, Stack, Typography } from "@mui/material";
-import React from "react";
+import IconArrow from "../../assets/icons/IconArrow";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+// Components
 import { ButtonApp } from "../ButtonApp/ButtonApp";
 import { InputAppContainer } from "../InputApp/InputAppContainer";
-import IconArrow from "../../assets/icons/IconArrow";
-export const FormRecoveryWithNewPass = ({ prevStep }) => {
-  return (
-    <Box
-      position="relative"
-      maxWidth="400px"
-      height="450px"
-      width="calc(100% - 50px)"
-      m="auto"
-      p="25px"
-      component="form"
-      // onSubmit={nextStep}
+// Styles
+import styles from './Forms.module.css';
 
-      // onSubmit={handleSubmit(onSubmit)}
-    >
-      <Stack
-        position="absolute"
-        top="-100px"
-        mt={"24px"}
-        children={
-          <ButtonApp
-            variant="text"
+export const FormRecoveryWithNewPass = ({ prevStep }) => {
+	// Yup schema
+	const schema = Yup.object().shape({
+		email: Yup.string()
+			.email('Неверно указана почта')
+			.required('Введите Вашу почту'),
+		password: Yup.string()
+			.min(6, 'Пароль должен быть больше 6 символов')
+			.max(40, 'Пароль должен быть менее 40 символов')
+			.required('Введите Ваш пароль'),
+	}).required();
+
+	// React-Hook-Form
+	const { handleSubmit, control,
+		formState: {
+			errors,
+		}
+	} = useForm({ resolver: yupResolver(schema) });
+
+	// Functions
+	const onSubmit = (data) => {
+		console.log(data);
+		// nextStep();
+	};
+	return (
+		<Box
+			className={styles.form}
+			component="form"
+			// onSubmit={nextStep}
+			onSubmit={handleSubmit(onSubmit)}
+		>
+			<Stack
+				className={styles.form__button_back}
+				children={
+					<ButtonApp
+						variant="text"
 						colorText="black"
 						startIcon={true}
-            icon={<IconArrow props='#4C464B'/>}
-            title="Назад"
-            hover={false}
+						icon={<IconArrow props='#4C464B' />}
+						title="Назад"
+						hover={false}
 						prevStep={prevStep}
 						style={{
 							color: '#4C464B'
 						}}
-          />
-        }
-      />
-      <Typography variant="h3" pb="40px">
-        Восстоновление пароля
-      </Typography>
-      <Stack direction="column" spacing="20px" pb="60px">
-        <InputAppContainer
-          label="Новый пароль"
-          type="password"
-          // {...register("password")}
-          icon={<VisibilityOutlined />}
-        />
-        <InputAppContainer
-          label="Повторите новый пароль"
-          type="password"
-          // {...register("password")}
-          icon={<VisibilityOutlined />}
-        />
-      </Stack>
-		
-        <ButtonApp
-          // className='auth__button'
-          variant="contained"
-          title="Продолжить"
-          type="submit"
-					disabled={false}
-					style={{
-						height: '50px',
-					}}
-          // fullWidth={true}
-        />
-      
-    </Box>
-  );
+					/>
+				}
+			/>
+			<Typography
+				className={styles.form__title}
+				component="h3"
+			>
+				Восстановление пароля
+			</Typography>
+			<Stack direction="column" spacing="30px" pb="60px">
+				<Stack className={styles.form__inputWrap}>
+					<Controller
+						name="password"
+						control={control}
+						render={({ field }) => (
+							<InputAppContainer
+								field={field}
+								className={styles.form__label}
+								label="Новый пароль"
+								type="password"
+								errors={errors}
+								icon={<VisibilityOutlined />}
+							/>)}
+					>
+					</Controller>
+				</Stack>
+				<Stack className={styles.form__inputWrap}>
+					<Controller
+						name="confirmPassword"
+						control={control}
+						render={({ field }) => (
+							<InputAppContainer
+								field={field}
+								className={styles.form__label}
+								label="Повторите новый пароль"
+								type="password"
+								errors={errors}
+								icon={<VisibilityOutlined />}
+							/>)}
+					>
+					</Controller>
+				</Stack>
+			</Stack>
+			<ButtonApp
+				className={styles.form__button}
+				variant="contained"
+				title="Продолжить"
+				type="submit"
+				fullWidth={false}
+				disabled={false}
+			/>
+		</Box>
+	);
 };

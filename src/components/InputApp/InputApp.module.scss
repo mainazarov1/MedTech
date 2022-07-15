@@ -1,0 +1,56 @@
+@import './../../styles/variables.scss';
+.input__container{
+	// position: relative;
+	.label {
+		margin-left: 10px;
+		font-family: "SF Pro Display";
+		font-style: normal;
+		font-weight: 700;
+		font-size: 12px;
+		line-height: 100%;
+		color: #a8a8a8;
+	}
+	.input{
+		background: #f7f3f7;
+		border-radius: 4px;
+		&::before{
+			border-bottom: none;
+		}
+		&::after{
+		}
+		&.Mui-Input-root{
+			&input::before{
+				all: unset;
+	
+			}
+		}
+		// border: 1px solid red;
+		&:hover{
+			// background-color: blue;
+		}
+	}
+	.input__message {
+		position: absolute;
+		bottom: -20px;
+		left: 10px;
+		color: $clr-red;
+		font-weight: 700;
+		font-size: 12px;
+		line-height: 100%;
+	}
+}
+
+
+.input input{
+	border:10px;
+	height: 50px;
+	padding: 0 14px;
+	border-radius: 4px;
+}
+.input fieldset{
+	border: 1px solid #F1F0F3;
+}
+.input:hover fieldset{
+	/* border: 1px solid red; */
+	/* border: 0; */
+}

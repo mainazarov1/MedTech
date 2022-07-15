@@ -1,22 +1,22 @@
 import { VisibilityOffOutlined, VisibilityOutlined } from "@mui/icons-material";
-import { IconButton, InputAdornment, styled, TextField } from "@mui/material";
-import style from "./InputApp.module.css";
+import { IconButton, Input, InputAdornment, styled, TextField } from "@mui/material";
+import styles from "./InputApp.module.css";
 
-const CssTextField = styled(TextField)({
-  "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-			borderColor: "#F1F0F3",
-    },
-    "&:hover fieldset": {
-      borderWidth: "1px",
-      borderColor: "#68B7EC",
-    },
-    "&.Mui-focused fieldset": {
-      borderWidth: "1px",
-      borderColor: "#68B7EC",
-    },
-  },
-});
+// const CssTextField = styled(TextField)({
+//   "& .MuiOutlinedInput-root": {
+//     "& fieldset": {
+// 			borderColor: "#F1F0F3",
+//     },
+//     "&:hover fieldset": {
+//       borderWidth: "1px",
+//       borderColor: "#68B7EC",
+//     },
+//     "&.Mui-focused fieldset": {
+//       borderWidth: "1px",
+//       borderColor: "#68B7EC",
+//     },
+//   },
+// });
 
 export const InputApp = ({
   icon,
@@ -25,12 +25,12 @@ export const InputApp = ({
   showPassword,
   ...props
 }) => {
-  console.log(icon);
+  // console.log(icon);
 
   return (
-    <CssTextField
+		<Input 
+			className={styles.input}
       hover={"true"}
-      className={style.input}
       sx={{}}
       type={type}
       InputProps={
@@ -38,7 +38,7 @@ export const InputApp = ({
           endAdornment: (
             <InputAdornment onClick={handleClick} position="end">
               <IconButton
-                className={style.icon}
+                className={styles.icon}
                 aria-label="toggle password visibility"
                 edge="end"
               >

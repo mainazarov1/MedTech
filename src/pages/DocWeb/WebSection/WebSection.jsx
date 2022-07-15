@@ -1,8 +1,11 @@
-import React from "react";
+// MaterialUI
 import { Box } from "@mui/system";
 import { Container, Stack, Typography } from "@mui/material";
+// Components
 import { ButtonApp } from "../../../components/ButtonApp/ButtonApp";
+// assets
 import { icons } from "../../../assets/icons";
+// styles
 import style from "./WebSection.module.css";
 import { Link } from "react-router-dom";
 
