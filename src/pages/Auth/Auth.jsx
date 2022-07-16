@@ -19,23 +19,21 @@ const Auth = () => {
 		isSuccess,
 		message,
 		user } = useSelector((state) => state.auth)
-	const nextStep = () => {
-		setStep(step + 1);
+	const toStep = (val) => {
+		setStep(val);
 	};
-	const prevStep = () => {
-		setStep(step - 1);
-	};
+	
 
 	const view = () => {
 		switch (step) {
 			case 1:
-				return <FormSignIn nextStep={nextStep} prevStep={prevStep} />;
+				return <FormSignIn toStep={toStep} />;
 			case 2:
-				return <FormRecoveryWithLogin nextStep={nextStep} prevStep={prevStep} />;
+				return <FormRecoveryWithLogin toStep={toStep} />;
 			case 3:
-				return <FormRecoveryWithPass nextStep={nextStep} prevStep={prevStep} />;
+				return <FormRecoveryWithPass toStep={toStep} />;
 			case 4:
-				return <FormRecoveryWithNewPass nextStep={nextStep} prevStep={prevStep} />;
+				return <FormRecoveryWithNewPass toStep={toStep} />;
 			default:
 				return;
 		}

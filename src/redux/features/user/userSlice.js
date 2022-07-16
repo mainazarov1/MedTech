@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login } from "./userAction";
+import { login, loginOneTimes } from "./userAction";
 const initialState = {
 	isLogged: null,
 	isLoading: null,
@@ -21,6 +21,24 @@ export const authSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
+			// loginOneTimesPass
+			.addCase(loginOneTimes.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(loginOneTimes.fulfilled, (state, { payload }) => {
+				state.isLoading = false;
+				state.message = payload;
+				state.user = payload;
+				state.isSuccess = true;
+			})
+			.addCase(loginOneTimes.rejected, (state, { payload }) => {
+				state.isLoading = false;
+				state.isLogged = true;
+				state.isSuccess = false;
+				state.message = payload;
+				state.user = null;
+			})
+			/// login
 			.addCase(login.pending, (state) => {
 				state.isLoading = true;
 			})
@@ -37,6 +55,7 @@ export const authSlice = createSlice({
 				state.message = payload;
 				state.user = null;
 			})
+
 	},
 	// extraReducers: {
 	// 	[login.pending]: (state, { payload }) => {
@@ -54,5 +73,5 @@ export const authSlice = createSlice({
 	// 	},
 	// },
 })
-export const { signIn } = authSlice.actions;
+export const { signIn, signInOneTimes } = authSlice.actions;
 export default authSlice.reducer

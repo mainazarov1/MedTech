@@ -15,8 +15,8 @@ export const ButtonApp = (
 		disabled,
 		colorText,
 		hover,
-		prevStep,
-		nextStep,
+		step,
+		toStep,
 		style,
 		iconWidth,
 		fullWidth,
@@ -75,7 +75,7 @@ export const ButtonApp = (
 			}
 			endIcon={endIcon ? icon : null}
 			hover={hover}
-			onClick={(handleClick && (()=> { handleClick(title) })) || (prevStep || nextStep)}
+			onClick={(handleClick && (() => { handleClick(title) })) || (()=>toStep(step))}
 			style={{
 				...style
 			}}

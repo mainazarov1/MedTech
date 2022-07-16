@@ -12,16 +12,15 @@ import styles from './Forms.module.css'
 
 
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from "react";
-import { login } from "../../redux/features/user/userAction";
+import { useEffect } from "react";
+import { login, loginOneTimes } from "../../redux/features/user/userAction";
 
-import { ToastContainer, Slide } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { Navigate, useNavigate } from "react-router-dom";
-import { toastFunc } from "../Toast/Toast";
+import { useNavigate } from "react-router-dom";
 
-export const FormSignIn = ({ nextStep }) => {
+export const FormSignIn = ({ toStep }) => {
 	const dispatch = useDispatch();
 	// const state = useSelector(state=>state.auth)
 	const {
@@ -59,19 +58,22 @@ export const FormSignIn = ({ nextStep }) => {
 	const navigate = useNavigate()
 	// Functions
 	const onSubmit = (data) => {
-		const userData = { email: data.email, password: data.password }
-		console.log(userData);
-		(dispatch(login(userData)))
+		const userData = { email: data.email, short: data.password };
+		(dispatch(loginOneTimes(userData)))
+		
+			isSuccess === true
+				? toStep(4)
+				: (dispatch(login(data)))
 		// nextStep();
 	};
 
 
 	useEffect(() => {
 		if (user?.user?.role === 'admin') {
-			navigate('/schedule')
+			navigate('/manual')
 		}
 		if (user?.user?.role === 'doctor') {
-			navigate('/manual')
+			navigate('/schedule')
 		}
 		if (message === 404) {
 			console.log('errrrrrroooor');
@@ -156,7 +158,8 @@ export const FormSignIn = ({ nextStep }) => {
 						variant="text"
 						title="Забыли пароль?"
 						fullWidth="false"
-						nextStep={nextStep}
+						step={2}
+						toStep={toStep}
 					/>
 				}
 			/>

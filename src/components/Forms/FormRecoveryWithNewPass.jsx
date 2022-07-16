@@ -11,7 +11,7 @@ import { InputAppContainer } from "../InputApp/InputAppContainer";
 // Styles
 import styles from './Forms.module.css';
 
-export const FormRecoveryWithNewPass = ({ prevStep }) => {
+export const FormRecoveryWithNewPass = ({ toStep }) => {
 	// Yup schema
 	const schema = Yup.object().shape({
 		email: Yup.string()
@@ -39,8 +39,8 @@ export const FormRecoveryWithNewPass = ({ prevStep }) => {
 		<Box
 			className={styles.form}
 			component="form"
-			// onSubmit={nextStep}
-			onSubmit={handleSubmit(onSubmit)}
+			// onSubmit={toStep()}
+			// onSubmit={handleSubmit(onSubmit)}
 		>
 			<Stack
 				className={styles.form__button_back}
@@ -52,7 +52,8 @@ export const FormRecoveryWithNewPass = ({ prevStep }) => {
 						icon={<IconArrow props='#4C464B' />}
 						title="Назад"
 						hover={false}
-						prevStep={prevStep}
+						step={3}
+						toStep={toStep}
 						style={{
 							color: '#4C464B'
 						}}
