@@ -1,7 +1,9 @@
+@import './../../../styles/variables.scss';
 .manual {
 	&__page {
 		position: relative;
 		height: 100vh;
+		min-height: 768px;
 		overflow: hidden;
 		display: flex;
 		align-items: center;
@@ -12,10 +14,10 @@
 			height: 100%;
 			background: linear-gradient(
 				to left,
-				rgba(250, 250, 250, 0) 0%,
-				rgba(255, 255, 255, 0.9) 40%,
-				rgba(255, 255, 255, 0.98) 65%,
-				rgba(255, 255, 255, 1) 100%
+				rgba($clr-white, 0) 0%,
+				rgba($clr-white, 0.9) 50%,
+				rgba($clr-white, 0.98) 65%,
+				rgba($clr-white, 1) 100%
 			);
 		}
 	}

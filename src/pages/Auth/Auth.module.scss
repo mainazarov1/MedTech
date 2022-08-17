@@ -1,10 +1,11 @@
-.auth{
-	&__left {
-
-	}
+@import "./../../styles/variables.scss";
+.auth {
+	height: 100vh;
+	min-height: 700px;
 	&__right {
 		display: flex;
 		justify-content: center;
+		background: $clr-white;
 	}
 	&__bg {
 		position: relative;
@@ -15,25 +16,24 @@
 		background-size: cover;
 		background-position: center;
 		z-index: 1;
-		&:before{
+		&:before {
 			display: block;
-			content: '';
+			content: "";
 			width: 100%;
 			height: 100%;
-			background-color: rgba(0,0,0,.4);
+			background: rgba($clr-black, 0.4);
 			z-index: 10;
 		}
-		&:after{
+		&:after {
 			position: absolute;
 			display: block;
 			content: url(./../../assets/icons/logo_med_tech.svg);
 			width: 250px;
 			height: auto;
-			/* background-color: rgba(0,0,0,.4); */
 			z-index: 10;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%,-50%);
+			transform: translate(-50%, -50%);
 		}
 		&__shadow {
 			position: fixed;
@@ -42,17 +42,12 @@
 			z-index: 900;
 			width: 100px;
 			height: 100px;
-			background-color: red;
+			background: $clr-red;
 		}
 	}
-
 }
-
 @media (max-width: 600px) {
-	.auth__bg:after{
+	.auth__bg:after {
 		display: none;
 	}
-}
-.form{
-	background-color: blue;
 }

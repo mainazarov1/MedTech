@@ -17,7 +17,6 @@ export const WebSection = ({ image, title, text, buttonTitle, preTitle, route })
 			style={{
 				background: `url(${image}) center center no-repeat`,
 				backgroundSize: "cover",
-				minHeight: "100vh",
 			}}
 		>
 			<Container
@@ -104,9 +103,10 @@ export const WebSection = ({ image, title, text, buttonTitle, preTitle, route })
 								textDecoration: 'none'
 							}}
 							children={
-								<ButtonApp title={buttonTitle} variant="contained" style={{
-									height: '44px'
-								}} />
+								<ButtonApp title={buttonTitle} variant="contained"
+									style={{
+										height: '44px'
+									}} />
 							} />
 					</Box>
 				</Stack>

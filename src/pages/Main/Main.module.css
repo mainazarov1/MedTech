@@ -1,0 +1,10 @@
+.main {
+  min-height: 720px;
+  height: calc(100vh - 130px);
+  background: #f8f7f3;
+}
+@media (max-width: 1200px) {
+  .main {
+    height: 100%;
+  }
+}/*# sourceMappingURL=Main.module.css.map */
