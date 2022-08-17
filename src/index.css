@@ -1,26 +1,53 @@
 /* import styles */
 @import './assets/fonts/SF\ Dispaly\ Font/stylesheet.css';
 @import '../node_modules/normalize.css/normalize.css';
-/* @import '../node_modules/react-calendar/dist/Calendar.css'; */
-@import url(./../node_modules/react-calendar/dist/Calendar.css);
+@import './../node_modules/react-calendar/dist/Calendar.css';
 @import './components/Calendar/Calendar.module.css';
 @import './components/TableCustom/TableCustom.module.css';
 @import './components/ButtonApp/ButtonApp.module.css';
-@import './components/Forms/Forms.module.css';
-@import './components/Toast/Toast.css';
-
+@import './pages/Auth/Forms/Forms.module.css';
 * {
+	box-sizing: border-box;
 	font-family: 'SF Pro Display'!important;
 	font-weight: 400;
+	margin: 0;
+	padding: 0;
 }
-.App{
-	height: 100vh;
+a{
+	text-decoration: none;
+	color: black;
 }
-/* toastify */
+
+/* toastify alert styles*/
 .toastify{
 	background-color: #F7F3F7!important;
 	color: #4C464B!important;
 }
+.toastify__progress_success{
+	background-color: #32d420!important;
+}
 .toastify__progress_error{
 	background-color: #D42027!important;
+}
+button, input, a{
+	cursor: pointer;
+}
+p, table{
+	cursor: default;
+}
+
+@media (max-width: 1199px) {
+	div.MuiContainer-root{
+		padding-left: 15px;
+		padding-right: 15px;
+	};
+}
+@media (max-width: 999px) {
+	div.MuiContainer-root{
+		padding-left: 8px;
+		padding-right: 8px;
+	};
+}
+.analisys{
+	background-color: red;
 }
