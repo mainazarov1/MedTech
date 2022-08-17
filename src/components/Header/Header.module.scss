@@ -1,0 +1,18 @@
+@import './../../styles/variables.scss';
+.header {
+	background: $clr-base;
+	color: $clr-white;
+}
+.header__wrap{
+	padding: 10px 0;
+}
+.header__logo{
+	display: flex;
+	align-items: center;
+	font-size: 24px;
+	font-weight: 900;
+	gap: 10px;
+	color: $clr-white;
+	text-decoration: none;
+	width: fit-content;
+}

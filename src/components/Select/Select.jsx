@@ -1,67 +1,68 @@
 import {
 	FormControl,
-	FormControlLabel,
 	MenuItem,
 	Radio,
-	RadioGroup,
 	Select,
+	styled,
 } from "@mui/material";
+
 import React, { useState } from "react";
 import styles from './Select.module.css';
+import './Select.module.css'
+import { showShortName } from "../../api/helperFunctions";
+const CssSelect = styled(Select)({
+	"&.MuiOutlinedInput-root": {
+		borderWidth: "1px",
+		borderColor: "#F1F0F3",
+		"&:hover fieldset": {
+			borderWidth: "1px",
+			borderColor: "#68B7EC",
+		},
+		"&.Mui-focused fieldset": {
+			borderWidth: "1px",
+			borderColor: "#68B7EC",
+		},
+	},
+});
+export const SelectBtn = ({ label = 'Врач', values, radio = false, handleClick, getDoctorId}) => {
 
-export const SelectBtn = ({ label, values, radio = false }) => {
-	const [name, setName] = useState("");
+	const [name, setName] = useState('')
 	const handleChange = (event) => {
-		setName(event.target.value);
+		const docName = showShortName(event.target.value)
+		setName(values[docName.id])
+		getDoctorId(event.target.value.id)
 	};
-	function handleClick(item) {
-		return alert(`Add New ${item}`)
+	const handleClickRole = (role) => {
+		handleClick(role)
 	}
 	function showNames() {
-		return values.map((el, i) => (
-			<MenuItem key={i} value={el}
-				onClick={radio && (() => { handleClick(el) })}
-			>
-				{radio
-					? <><Radio />{el}</>
-					: el
-				}
-			</MenuItem>
-		))
+		if (values !== null) {
+			return values.map((val,i) => {
+				return <MenuItem
+					key={val?.id || i}
+					className={styles.select__item}
+					value={val}
+					onClick={radio ? ()=>handleClickRole(val.role) : null}
+				>
+					{radio
+						? <><Radio />{val.title}</>
+						: showShortName(val)
+					}
+				</MenuItem>
+			})
+		}
 	}
-	// function showRoles() {
-	// 	return (
-	// 		<RadioGroup>
-	// 			{values.map((el, i) => (
-	// 					<FormControlLabel key={i} value={el} label={el} control={<Radio />} ></FormControlLabel>
-	// 			))}
-	// 		</RadioGroup>
-	// 	)
-	// }
 	return (
 		<FormControl>
-			{/* {!name ? <InputLabel id="select-label">{label}</InputLabel> : ""} */}
-			<Select
+			<CssSelect
 				className={styles.select}
-				// placeholder={label}
-				value={name}
-				onChange={!radio && handleChange}
+				onChange={!radio ? handleChange : null}
 				displayEmpty
-			// input={<InputApp/>}
-			// inputProps={{ 'aria-label': 'Without label' }}
-			// sx={{
-			// 	background: "#F7F3F7",
-			// 	width: "200px",
-			// 	height: "44px",
-			// 	border: "1px solid #F1F0F3",
-			// 	borderRadius: "4px",
-			// 	color: "black",
-			// }}
-			// IconComponent={<ArrowDownward/>}
+				defaultValue={''}
 			>
 				<MenuItem value=''>{label}</MenuItem>
 				{showNames()}
-			</Select>
+			</CssSelect>
 		</FormControl>
 	);
 };

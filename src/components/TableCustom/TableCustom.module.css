@@ -1,30 +1,50 @@
-.tableContainer {
-	width: 50%;
-	/* height: calc(100vh-310px); */
-	max-height: calc(100vh - 360px);
+div.table__container {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  box-sizing: border-box;
 }
-.tableContainer::-webkit-scrollbar {
-	width: 8px;
-	height: 10vh;
+
+div.table__container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
-.tableContainer::-webkit-scrollbar-track {
-	background-color: #f1f0f3;
-	border-radius: 12px;
-	height: 100%;
+
+div.table__container::-webkit-scrollbar-track {
+  background: #f1f0f3;
+  border-radius: 12px;
+  height: 100%;
 }
-.tableContainer::-webkit-scrollbar-thumb {
-	background-color: #cdc5cb;
-	border-radius: 12px;
-	height: 30%;
+
+div.table__container::-webkit-scrollbar-thumb {
+  background: #cdc5cb;
+  border-radius: 12px;
+  height: 30%;
 }
-.tableBtn {
-	width: 30px;
-	height: 30px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: transparent;
-	border: 0;
-	outline: 0;
-	cursor: pointer;
+
+.table__btn {
+  width: 50px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
 }
+
+td.table__row {
+  padding: 10px;
+  border: 0;
+}
+
+.MuiTableRow-root {
+  border-radius: 10px;
+}
+.MuiTableRow-root:nth-child(even) {
+  background: #f7f3f7;
+}
+.MuiTableRow-root:hover {
+  background: #e2f1fc;
+}/*# sourceMappingURL=TableCustom.module.css.map */

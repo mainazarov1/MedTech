@@ -1,40 +1,49 @@
 button.MuiButton-root {
-	font-family: "SF Pro Display";
-	font-style: normal;
-	font-weight: 700;
-	font-size: 16px;
-	line-height: 100%;
-	text-transform: inherit;
-	padding: 11px;
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 100%;
+  text-transform: inherit;
+  padding: 11px;
 }
+button.MuiButton-root:hover {
+  border-color: #68b7ec;
+}
+
 button.MuiButton-contained {
-	background-color: #68b7ec;
-	box-shadow: none;
-	color: #fff;
+  background: #68b7ec;
+  box-shadow: none;
+  color: #ffffff;
 }
 button.MuiButton-contained:hover {
-	background-color: rgba(104, 183, 236, 0.8);
-	box-shadow: none;
+  background: rgba(104, 183, 236, 0.8);
+  box-shadow: none;
 }
 button.MuiButton-contained:focus {
-	background-color: rgba(104, 183, 236, 0.8);
-	box-shadow: none;
-	border: 0;
-	outline: 0;
+  background: rgba(104, 183, 236, 0.8);
+  box-shadow: none;
+  border: 0;
+  outline: 0;
 }
+
 button.MuiButton-text {
-	width: fit-content;
-	height: fit-content;
-	
-	color: #68b7ec;
-	text-transform: inherit;
+  color: #68b7ec;
+  text-transform: inherit;
 }
 button.MuiButton-text:hover {
-	background-color: transparent;
+  background: transparent;
 }
-/* class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButtonBase-root ButtonApp_btn__72YnO css-1fu7jd5-MuiButtonBase-root-MuiButton-root" */
 
-button>span.MuiButton-startIcon{
-	margin-right: 11px;
-	margin-left: 0px;
+button.Mui-focusVisible {
+  border: 1px solid #68b7ec;
 }
+
+button > span.MuiButton-startIcon {
+  margin-right: 11px;
+  margin-left: 0px;
+}
+
+a {
+  text-decoration: none;
+}/*# sourceMappingURL=ButtonApp.module.css.map */

@@ -1,9 +1,11 @@
 .select {
-	max-width: fit-content;
-	min-width: 200px;
-	height: 44px;
-	background: #F7F3F7;
-	border: 1px solid #F1F0F3;
-	border-radius: 4px;
-	color: #000000;
-}
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  min-width: 200px;
+  height: 44px;
+  background: #f7f3f7;
+  border: 1px solid #f1f0f3;
+  border-radius: 4px;
+  color: #4c464b;
+}/*# sourceMappingURL=Select.module.css.map */

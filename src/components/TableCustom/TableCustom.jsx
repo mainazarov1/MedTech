@@ -1,5 +1,6 @@
 import {
-	Stack,
+	CircularProgress,
+	Switch,
 	Table,
 	TableBody,
 	TableCell,
@@ -7,68 +8,97 @@ import {
 	TableHead,
 	TableRow,
 } from "@mui/material";
-import React from "react";
-import { icons } from "../../assets/icons";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import IconInfo from "../../assets/icons/IconInfo";
 import { images } from "../../assets/images";
 import styles from './TableCustom.module.css'
-export const TableCustom = ({columns,rows}) => {
-	
-	const calcHeight = (px) => {
-		const windowHeight = window.innerHeight;
-		const height = windowHeight - px;
-		console.log(height)
-		return height
+export const TableCustom = ({ columns, rows, handleClick, getData, radio }) => {
+	const [data, setData] = useState([])
+	const { user } = useSelector((state) => state.auth);
+	const { isLoading } = useSelector(state => state.appointment)
+	const clickAppointment = (value) => {
+		handleClick(value);
+		getData(value)
+	}
+	useEffect(() => {
+		setData(rows)
+	}, [rows])
+	function getRowsData() {
+		return data?.map((row, i) => (
+			<TableRow key={i}
+				style={{
+					height: 'max-content'
+				}}
+			>
+				{columns.map((column) => {
+					const value = row[column.id];
+					return (
+						<TableCell
+							className={styles.table__row}
+							key={column.id}
+							style={{
+								width: column?.width,
+								minWidth: column?.minWidth,
+								maxWidth: column?.maxWidth,
+							}}
+						>
+							{value}
+							{column.id === 'option'
+									? <button className={styles.table__btn}
+										onClick={radio ? () => handleClick(row) : () => clickAppointment(row)}>
+										{radio
+												? <Switch checked={row.active} disabled={user?.role === 'doctor'} />
+												: <IconInfo />}</button>
+									: null}
+						</TableCell>
+					);
+				})}
+			</TableRow>
+		))
+	}
+	function emptyData() {
+		return (<TableRow key={1}
+			style={{
+				height: '100%',
+				width: '100%'
+			}}>
+			<TableCell
+				colSpan={columns.length - 1}
+				style={{
+					border: 0,
+					background: data?.length === 0 ? `url(${images.list}) center center no-repeat` : 'none',
+					backgroundSize: '500px'
+				}}
+			>
+			</TableCell>
+		</TableRow>
+		)
 	}
 	return (
 		<TableContainer
-			className={styles.tableContainer}
-			// sx={{
-			// 	maxHeight: calcHeight(360),
-			// 	"&::-webkit-scrollbar": {
-			// 		width: 8,
-			// 		height: '10vh',
-			// 	},
-			// 	"&::-webkit-scrollbar-track": {
-			// 		backgroundColor: "#F1F0F3",
-			// 		borderRadius: 12,
-			// 		height: '10vh'
-			// 	},
-			// 	"&::-webkit-scrollbar-thumb": {
-			// 		backgroundColor: "#CDC5CB",
-			// 		borderRadius: 12,
-			// 		height: '10vh'
-			// 	}
-			// }}
+			className={styles.table__container}
 		>
 			<Table
 				stickyHeader aria-label="sticky table"
 				sx={{
-					// height: calcHeight(500),
-					height: 'max-content',
+					height: (data.length !== 0) ? 'max-content' : '100%',
 					paddingRight: '24px',
 					overflowY: 'auto'
 				}}
 			>
 				<TableHead width={"100%"}>
-					{/* <TableRow>
-            <TableCell>№</TableCell>
-            <TableCell>ФИО врача</TableCell>
-            <TableCell>ФИО пациента</TableCell>
-            <TableCell>Дата</TableCell>
-            <TableCell>Время</TableCell>
-					</TableRow> */}
 					<TableRow width={"100%"}>
 						{columns.map((column) => (
 							<TableCell
 								key={column.id}
-								// align={column.align}
 								style={{
-									// top: 57,
 									padding: "15px 10px",
 									width: column.width,
 									minWidth: column.minWidth,
 									maxWidth: column.maxWidth,
-									borderBottom: '1px solid #4C464B'
+									borderBottom: '1px solid #4C464B',
 								}}
 							>
 								{column.label}
@@ -78,63 +108,33 @@ export const TableCustom = ({columns,rows}) => {
 				</TableHead>
 				<TableBody
 					style={{
-						// width: '100%',
-						// background: rows.length === 0 ? `url(${images.list}) center center no-repeat` : 'none',
-						// backgroundSize: 'cover'
 						overflowY: 'scroll',
-
+						height: '100%',
 					}}
 					rows={1}
 					columns={1}
 				>
 					{
-						rows.length !== 0
+						isLoading
 							?
-							rows.map((row) => {
-								return (
-									<TableRow key={row.number}>
-										{columns.map((column) => {
-											const value = row[column.id];
-											return (
-												<TableCell
-													key={column.id}
-													style={{
-														// top: 57,
-														padding: "15px 10px",
-														width: column.width,
-														minWidth: column.minWidth,
-														maxWidth: column.maxWidth,
-														borderBottom: 'none'
-													}}
-												>
-													{value}
-													{column.id === 'option' ? <button className={styles.tableBtn} onClick={() => alert('clicked option button')}><img src={icons.dots} alt={column.id} /></button> : null}
-												</TableCell>
-											);
-										})}
-									</TableRow>
-								);
-							})
-							: <TableRow key={1}
-							>
+							<TableRow>
 								<TableCell
-									colSpan='5'
+									colSpan={columns.length - 1}
 									style={{
-										border: 0,
-										background: rows.length === 0 ? `url(${images.list}) center center no-repeat` : 'none',
+										border: "0",
+										height: '100%'
 									}}
-									height='300px'
 								>
-									{/* <img src={images.list} alt='s' style={{
-										height: '100%',
-										width: 'auto',
-										// background: 'red',
-										top: '0',
-										left: '-50%',
-										transform: 'translate(50%,30%)',
-									}} /> */}
+									<CircularProgress style={{
+										display: 'block',
+										position: 'realtive',
+										margin: 'auto'
+									}} />
 								</TableCell>
 							</TableRow>
+							: data.length !== 0
+								? getRowsData()
+								: emptyData()
 					}
 				</TableBody>
 			</Table>
