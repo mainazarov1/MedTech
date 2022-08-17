@@ -1,44 +1,5 @@
-.nav__wrap {
-	display: flex;
-	gap: 20px;
-	/* padding: 13px 0; */
-	background-color: #FFFFFF;
-	/* width: 480px; */
-}
-
-button.MuiButton-root {
-}
-button.MuiButton-contained {
-	/* background-color: #68b7ec;
-	box-shadow: none;
-	color: #fff; */
-	text-transform: lowercase;
-	background-color: red;
-}
-button.MuiButton-contained:hover {
-	background-color: rgba(104, 183, 236, 0.8);
-	box-shadow: none;
-}
-button.MuiButton-contained:focus {
-	background-color: rgba(104, 183, 236, 0.8);
-	box-shadow: none;
-	border: 0;
-	outline: 0;
-}
-button.MuiButton-text {
-	width: fit-content;
-	height: fit-content;
-	font-family: "SF Pro Display";
-	font-style: normal;
-	font-weight: 700;
-	font-size: 16px;
-	line-height: 100%;
-	color: #68b7ec;
-	text-transform: inherit;
-}
-button.MuiButton-text:hover {
-	background-color: transparent;
-}
-.btn{
-	color: red;
-}
+.nav {
+  display: flex;
+  gap: 20px;
+  background: #ffffff;
+}/*# sourceMappingURL=Navigation.module.css.map */

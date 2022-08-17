@@ -1,0 +1,56 @@
+@import "./../../../styles/variables.scss";
+.schedule {
+	display: flex;
+	height: calc(100vh - 170px);
+	column-gap: 20px;
+	row-gap: 30px;
+	min-height: 680px;
+	@media (max-width: 1200px) {
+		flex-direction: column;
+		height: 100%;
+	}
+
+	&__content {
+		width: 100%;
+		background: $clr-white;
+		padding: 30px 25px;
+		border: 1px solid $clr-greyBorder;
+		border-radius: 10px;
+		.subtitle {
+			font-size: 24px;
+		}
+	}
+	& div.schedule__calendar {
+		background: $clr-white;
+		padding: 30px 20px;
+		gap: 50px 0;
+		border: 1px solid $clr-greyBorder;
+		border-radius: 10px;
+		@media (min-width: 700px) and (max-width: 1199px) {
+			display: flex;
+			justify-content: space-evenly;
+			flex-direction: row-reverse;
+			gap: 0 50px;
+		}
+		@media (max-width: 1199px) {
+			gap: 0 50px;
+		}
+	}
+}
+.calendar {
+	&__content {
+		position: relative;
+	}
+}
+p.calendar__text {
+	position: absolute;
+	top: 10px;
+	font-family: "SF Pro Display";
+	font-style: normal;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 100%;
+	letter-spacing: 0.24379px;
+	color: $clr-black;
+}
+

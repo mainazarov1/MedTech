@@ -1,0 +1,10 @@
+@import './../../styles/variables.scss';
+.select {
+	max-width: fit-content;
+	min-width: 200px;
+	height: 44px;
+	background: $clr-greyLight;
+	border: 1px solid $clr-greyBorder;
+	border-radius: 4px;
+	color: $clr-black;
+}

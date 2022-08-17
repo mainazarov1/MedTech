@@ -1,8 +1,8 @@
 import React from 'react'
-import Modal from '../Modal/Modal'
+import ModalAppointmentCreate from '../Modals/ModalAppointmentCreate/ModalAppointmentCreate'
 
 export const CheckList = () => {
 	return (
-		<Modal/>
+		<ModalAppointmentCreate/>
 	)
 }
