@@ -23,8 +23,8 @@ import patientService from '../../../services/patientService'
 import IconList from '../../../assets/icons/IconList'
 import IconPlus from '../../../assets/icons/IconPlus'
 import checklistService from '../../../services/checklistService'
-import { addListNumber } from '../../../api/helperFunctions'
 import { SelectBtn } from '../../../components/Select/Select'
+import { icons } from '../../../assets/icons'
 const ProfilePatient = () => {
 	const { id: userId } = useParams()
 	const location = useLocation()
@@ -37,17 +37,15 @@ const ProfilePatient = () => {
 	const [getMedcard, setMedcard] = useState()
 	// Yup schema
 	const schema = Yup.object().shape({
-		last_name: Yup.string().required('Введите Вашу фамилию'),
-		name: Yup.string().required('Введите Вашe имя'),
-		patronymic: Yup.string().required('Введите Вашe отчество'),
+		last_name: Yup.string(),
+		name: Yup.string(),
+		patronymic: Yup.string(),
 		phone: Yup.string()
-			.min(10, 'Введите номер телефона')
-			.required('Введите Ваш номер телефона'),
+			.min(10, 'Введите номер телефона'),
 		email: Yup.string()
 			.email('Неверно указана почта')
 			.required('Введите Вашу почту'),
 	}).required();
-	console.log(checkedUser);
 	const defaultUserValues = {
 		last_name: checkedUser ? checkedUser.last_name : '',
 		name: checkedUser ? checkedUser.name : '',
@@ -94,8 +92,13 @@ const ProfilePatient = () => {
 		const req = async () => {
 			const registerData = {
 				...data,
-				medcard: checkedUser?.id,
+				last_name: checkedUser?.last_name,
+				name: checkedUser?.name,
+				patronymic: checkedUser?.patronymic,
+				// email: checkedUser?.email,
 				address: checkedUser?.permanent_residence,
+				phone: checkedUser?.phone,
+				medcard: checkedUser?.id,
 				doctor: parseInt(doctorId)
 			}
 			console.log(registerData);
@@ -125,7 +128,6 @@ const ProfilePatient = () => {
 	useEffect(() => {
 		setCheckLists(checkedUser?.checklist)
 	}, [checkedUser, setCheckLists])
-
 	return (
 		<section
 			className={styles.profile}
@@ -160,7 +162,7 @@ const ProfilePatient = () => {
 						</Stack>
 						: <Stack>
 							<Stack alignItems={'flex-start'} marginBottom={'10px'}>
-								<img className={styles.profile__avatar} src={images.doctor} alt='avatar' />
+								<img className={styles.profile__avatar} src={checkedUser?.image ? `data:image/jpeg;base64,${user?.image}` : icons.avatar} alt='avatar' />
 							</Stack>
 							<Stack gap={'20px'} marginBottom={'25px'}>
 								<Stack

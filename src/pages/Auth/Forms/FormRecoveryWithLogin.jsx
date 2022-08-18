@@ -82,7 +82,7 @@ const {message} = useSelector((state)=>state.auth)
 						render={({ field }) => (
 							<InputApp
 								field={field}
-								className={styles.form__label}
+								// className={styles.form__label}
 								label="Логин"
 								type="email"
 								errors={errors}

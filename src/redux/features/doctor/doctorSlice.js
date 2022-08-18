@@ -8,6 +8,12 @@ export const doctorSlice = createSlice({
 	name: 'doctor',
 	initialState,
 	reducers: {
+		setSwitch: (state, { payload }) => {
+			const i = state.doctor.findIndex((item) => item.id === payload);
+			if (i !== -1) {
+				state.doctor[i].active = !state.doctor[i].active;
+			}
+		}
 	},
 	extraReducers: (builder) => {
 		builder
@@ -43,4 +49,7 @@ export const doctorSlice = createSlice({
 			
 	},
 })
+export const {
+	setSwitch
+} = doctorSlice.actions;
 export default doctorSlice.reducer

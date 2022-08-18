@@ -59,7 +59,7 @@ export const FormRecoveryWithNewPass = ({ toStep }) => {
 		// 	? dispatch(changePass({ id: user.id, password: data.password, path: 'Doctor' }))
 		// 	: dispatch(changePass({ id: user.id, password: data.password, path: 'Admin' }))
 		
-		const response = dispatch(changePass({ id: user.id, password: data.password, path: user?.role === 'doctor' ? 'Dcotor' :'Admin' }))
+		dispatch(changePass({ id: user.id, password: data.password, path: user?.role === 'doctor' ? 'Doctor' :'Admin' }))
 	};
 	useEffect(() => {
 		if (message === 'Password was successfully changed') {
@@ -103,7 +103,7 @@ export const FormRecoveryWithNewPass = ({ toStep }) => {
 						render={({ field }) => (
 							<InputAppContainer
 								field={field}
-								className={styles.form__label}
+								// className={styles.form__label}
 								label="Новый пароль"
 								type="password"
 								errors={errors}
@@ -119,7 +119,7 @@ export const FormRecoveryWithNewPass = ({ toStep }) => {
 						render={({ field }) => (
 							<InputAppContainer
 								field={field}
-								className={styles.form__label}
+								// className={styles.form__label}
 								label="Повторите новый пароль"
 								type="password"
 								errors={errors}

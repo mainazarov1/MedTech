@@ -5,7 +5,7 @@ import styles from "./InputApp.module.scss";
 
 const CssTextField = styled(TextField)({
 	"& .MuiOutlinedInput-root": {
-		
+		// height: '44px',
 		"& fieldset": {
 			borderColor: "#F1F0F3",
 		},
@@ -20,7 +20,7 @@ const CssTextField = styled(TextField)({
 	},
 	"& .Mui-disabled": {
 		"& input:disabled": {
-			'-webkit-text-fill-color': 'rgb(0,0,0)'
+			'WebkitTextFillColor': 'rgb(0,0,0)'
 		},
 	},
 });

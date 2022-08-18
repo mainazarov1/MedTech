@@ -21,11 +21,11 @@ import { getAllPatient, getAllPatientDoc } from "../../redux/features/patient/pa
 import ProfilePatient from "./Profile/ProfilePatient";
 const Main = () => {
 	const { isLoading, user } = useSelector((state) => state.auth)
-	
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(getAllDoctor())
 		if (user?.role === 'doctor') {
+			console.log('triger');
 			dispatch(getAllPatientDoc(user.id))
 		} else {
 			dispatch(getAllPatient())

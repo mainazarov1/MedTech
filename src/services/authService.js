@@ -16,6 +16,7 @@ const login = async (userData) => {
 
 const forgotPass = async (userData) => {
 	const response = await api.post(`auth/forgotpass`, userData);
+	console.log(response);
 	return response.data
 }
 

@@ -7,18 +7,19 @@ import { TableCustom } from '../../../components/TableCustom/TableCustom'
 import styles from './Employees.module.scss'
 import mainStyles from './../../../styles/index.module.scss'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { addListNumber, showShortName } from '../../../api/helperFunctions'
 import { InputApp } from '../../../components/InputApp/InputApp'
 import IconScope from '../../../assets/icons/IconScope'
 import ModalDoctorInfo from '../../../components/Modals/ModalDoctorInfo/ModalDoctorInfo'
+import { setSwitch } from '../../../redux/features/doctor/doctorSlice'
+import achivateService from '../../../services/archiveService'
+import { weekdays } from '../../../utils/mock'
 const Employees = () => {
 	const { user } = useSelector((state) => state.auth);
-	const roles = (user?.role === 'superadmin')
-		? [{title: "Супер администратор", role: 'superadmin'}, {title: "Администратор", role: 'admin'}, {title: "Врач", role: 'doctor'},{title: "Пациент", role: 'patient'} ]
-		: ["Пациент"]
+	const [roles, setRoles] = useState([{title: "Супер администратор", role: 'superadmin'}, {title: "Администратор", role: 'admin'}, {title: "Врач", role: 'doctor'}])
 	const columns = [
 		{ id: "number", label: "№", width: 35 },
 		{
@@ -57,9 +58,16 @@ const Employees = () => {
 	];
 
 	const selectClick = (item) => {
+		setRoles([{title: "Супер администратор", role: 'superadmin'}, {title: "Администратор", role: 'admin'}, {title: "Врач", role: 'doctor'}])
 		return alert(`Add New ${item}`)
 	}
-	
+	const dispatch = useDispatch();
+	const [achivate, setAchivate] = useState('')
+	const navigate = useNavigate()
+	const handleAchivate = (row) => {
+		setAchivate(row)
+		dispatch(setSwitch(row.id));
+	}
 	const { doctor } = useSelector((state) => state.doctor)
 	const [search, setSearch] = useState('')
 	const [doctors, setDoctors] = useState([])
@@ -71,23 +79,33 @@ const Employees = () => {
 		setCheckedUser(...doctor.filter(doc=>doc.id === e))
 		setModalDoctorInfo(!modalDoctorInfo)
 	}
+	const addEmployees = () => {
+	}
 	const formatData = (arr) => {
-		return arr.map(({ id, last_name, name, patronymic, phone, email, patients_num, doctorworkshift, active }, i) => (
+		return arr.map(({ id, last_name, name, patronymic, phone, email, patients_num, doctorworkshift, active, role }, i) => (
 			{
 				id: id,
 				number: addListNumber(i),
 				doctor: <span onClick={()=>handleClick(id)}>{showShortName({ last_name, name, patronymic })}</span>,
+				role: role,
 				// doctor: <Link to={`${id}`}>{showShortName({ last_name, name, patronymic })}</Link>,
 				phone: <a href={`tel:${phone}`}>{phone}</a>,
 				email: <a href={`mailto:${email}`} target='_blank' rel="noreferrer" >{email}</a>,
 				patients: patients_num,
-				doctorworkshift: doctorworkshift?.map(({ weekday }) => days.current[weekday]).join(' '),
+				doctorworkshift: doctorworkshift?.map(({ weekday }) => weekdays[weekday]).sort((a,b)=>weekdays.indexOf(a)-weekdays.indexOf(b)).join(' '),
 				active
 			}
 		))
 	}
 
 	useEffect(() => {
+		if (achivate) {
+			const achivateAsyncFunc = async () => {
+				await achivateService.achivateUser({ id: achivate.id, role: achivate.role }).then(res=>res.data)
+			}
+			achivateAsyncFunc()
+			setAchivate('')
+		}
 		function getData() {
 			if (doctor !== null) {
 				if (search) {
@@ -106,7 +124,7 @@ const Employees = () => {
 			}
 		}
 		getData()
-	}, [search, doctor])
+	}, [ search, doctor, achivate ])
 	const rows = doctors
 	return (
 		<section className={styles.employees}>
@@ -134,7 +152,6 @@ const Employees = () => {
 				// }}
 			>
 				<InputApp
-					title='Скачать список'
 					variant='outlined'
 					onChange={(e) => setSearch(e.target.value)}
 					InputProps={{
@@ -154,7 +171,7 @@ const Employees = () => {
 				/>
 				{/* <SelectBtn label={"Врач"} values={doctor} getDoctorId={setDoctorId} /> */}
 				<Stack direction='row' gap='40px' justifyContent='flex-end'>
-					<ButtonApp
+					{/* <ButtonApp
 						title='Скачать список'
 						variant='outlined'
 						endIcon={<IconDownload props='#68B7EC' />}
@@ -162,7 +179,7 @@ const Employees = () => {
 							width: "fit-content",
 							color: '#68B7EC'
 						}}
-					/>
+					/> */}
 					{user?.role === 'superadmin'
 						? <SelectBtn label={"Добавить пользователя"} values={roles} radio={true} handleClick={selectClick} />
 						:	null
@@ -172,7 +189,7 @@ const Employees = () => {
 			<Stack
 				className={styles.employees__table}
 			>
-				<TableCustom columns={columns} rows={rows} radio={true} handleClick={handleClick} />
+				<TableCustom columns={columns} rows={rows} radio={true} handleClick={handleAchivate} />
 			</Stack>
 		</section>
 	)

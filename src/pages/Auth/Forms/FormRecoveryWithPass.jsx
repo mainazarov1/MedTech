@@ -88,7 +88,7 @@ export const FormRecoveryWithPass = ({ toStep, userData }) => {
 						render={({ field }) => (
 							<InputAppContainer
 								field={field}
-								className={styles.form__label}
+								// className={styles.form__label}
 								label="Пароль"
 								type="password"
 								errors={errors}

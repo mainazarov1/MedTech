@@ -11,8 +11,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { InputApp } from '../../../components/InputApp/InputApp'
 import IconScope from '../../../assets/icons/IconScope'
-import archiveService from '../../../services/archiveService'
+import achivateService from '../../../services/archiveService'
 import { setSwitch } from '../../../redux/features/patient/patientSlice'
+import { getAllPatient } from '../../../redux/features/patient/patientAction'
 const Patients = () => {
 	// const { user } = useSelector((state) => state.auth);
 	const { patient } = useSelector(state => state.patient)
@@ -60,10 +61,10 @@ const Patients = () => {
 	];
 	const [patients, setPatients] = useState([])
 	const [search, setSearch] = useState('')
-const [archive, setArchive] = useState('')
+const [achivate, setAchivate] = useState('')
 const navigate = useNavigate()
-	const handleClick = (row) => {
-		setArchive(row)
+	const handleAchivate = (row) => {
+		setAchivate(row)
 		dispatch(setSwitch(row.id));
 	}
 	const addPatient = () => {
@@ -85,12 +86,13 @@ const navigate = useNavigate()
 		})
 	}
 	useEffect(() => {
-		if (archive) {
-			const archiveAsyncFunc = async () => {
-				await archiveService.archiveUser({ id: archive.id, role: archive.role }).then(res=>res.data)
+		// dispatch(getAllPatient())
+		if (achivate) {
+			const achivateAsyncFunc = async () => {
+				await achivateService.achivateUser({ id: achivate.id, role: achivate.role }).then(res=>res.data)
 			}
-			archiveAsyncFunc()
-			setArchive('')
+			achivateAsyncFunc()
+			setAchivate('')
 		}
 		function getData() {
 			if (patient !== null) {
@@ -119,7 +121,7 @@ const navigate = useNavigate()
 			}
 		}
 		getData()
-	}, [search, patient, archive])
+	}, [search, patient, achivate])
 	const rows = patients
 	return (
 		<section className={styles.patients}>
@@ -164,7 +166,7 @@ const navigate = useNavigate()
 				</Stack>
 			</Stack>
 			<Stack className={styles.patients__table}>
-				<TableCustom columns={columns} rows={rows} radio={true} handleClick={handleClick}/>
+				<TableCustom columns={columns} rows={rows} radio={true} handleClick={handleAchivate}/>
 			</Stack>
 		</section>
 	)
