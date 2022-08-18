@@ -78,21 +78,25 @@ export const Navigation = () => {
 								/>
 							)}
 						/>
-						<NavLink
-							to={"/medcard"}
-							className={styles.nav__link}
-							children={({ isActive }) => (
-								<ButtonApp
-									className={styles.nav__button}
-									title={"Контент"}
-									variant={isActive ? 'contained' : 'text'}
-									startIcon={<IconContent props={isActive ? '#FFFFFF' : '#4C464B'} />}
-									style={{
-										color: isActive ? '#FFFFFF' : '#4C464B'
-									}}
+						{
+							user?.role === 'superadmin'
+								? <NavLink
+									to={"/medcard"}
+									className={styles.nav__link}
+									children={({ isActive }) => (
+										<ButtonApp
+											className={styles.nav__button}
+											title={"Контент"}
+											variant={isActive ? 'contained' : 'text'}
+											startIcon={<IconContent props={isActive ? '#FFFFFF' : '#4C464B'} />}
+											style={{
+												color: isActive ? '#FFFFFF' : '#4C464B'
+											}}
+										/>
+									)}
 								/>
-							)}
-						/>
+								: null
+						}
 					</Stack>
 					<Stack
 						display={'flex'}
@@ -110,7 +114,6 @@ export const Navigation = () => {
 										<ButtonApp className={styles.nav__profile}
 											variant={isActive ? 'contained' : 'text'}
 											startIcon={
-
 												<img src={images.manualImg}
 													style={{
 														width: '38px',
@@ -123,7 +126,7 @@ export const Navigation = () => {
 												'&.MuiButton-root': {
 													minWidth: 'fit-content',
 													height: '44px',
-													color: isActive ? '#fff': '#4C464B',
+													color: isActive ? '#fff' : '#4C464B',
 												}
 											}}
 											title={`${user.surname} ${user.name[0].toUpperCase()}.`}
@@ -133,7 +136,7 @@ export const Navigation = () => {
 
 								: null
 						}
-						<ButtonApp
+						{/* <ButtonApp
 							className={styles.nav__button}
 							startIcon={<IconNotification props={'#4C464B'} />}
 							variant={'contained'}
@@ -163,7 +166,7 @@ export const Navigation = () => {
 									},
 								}
 							}}
-						/>
+						/> */}
 						<ButtonApp
 							title={matches ? 'Выйти' : ''}
 							variant={'contained'}

@@ -18,9 +18,7 @@ import { InputApp } from "./../../../components/InputApp/InputApp";
 
 export const FormSignIn = ({ toStep }) => {
 	const dispatch = useDispatch();
-	const {
-		isLogged,
-		user } = useSelector((state) => state.auth)
+	const { isLogged, user } = useSelector((state) => state.auth)
 
 	// Yup schema
 	const schema = Yup.object().shape({
@@ -90,6 +88,7 @@ export const FormSignIn = ({ toStep }) => {
 						render={({ field }) => (
 							<InputApp
 								field={field}
+								// className={styles.form__label}
 								label="Логин"
 								type="email"
 								errors={errors}
@@ -104,6 +103,7 @@ export const FormSignIn = ({ toStep }) => {
 						render={({ field }) => (
 							<InputAppContainer
 								field={field}
+								// className={styles.form__label}
 								label="Пароль"
 								type="password"
 								errors={errors}

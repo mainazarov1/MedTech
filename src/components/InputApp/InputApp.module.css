@@ -12,9 +12,6 @@
   background: #f7f3f7 !important;
   border-radius: 4px;
 }
-.input .MuiOutlinedInput-root {
-  height: 100px;
-}
 .input::before {
   border-bottom: none;
 }

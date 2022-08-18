@@ -172,6 +172,7 @@ const MedCard = ({ checkedUser, setCheckedUser, setMedcard }) => {
 											<InputApp
 												field={{ value, onChange, name, onBlur }}
 												label={label}
+												
 												// defaultValues={checkedUser ? checkedUser?.medcard?.[el[0]] : ''}
 												value={value}
 												errors={errors}
