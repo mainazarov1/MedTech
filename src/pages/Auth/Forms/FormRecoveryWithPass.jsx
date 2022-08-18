@@ -13,6 +13,7 @@ import styles from './Forms.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "./../../../redux/features/user/userAction";
 import { useEffect } from "react";
+import { resetMessage } from "../../../redux/features/user/userSlice";
 export const FormRecoveryWithPass = ({ toStep, userData }) => {
 	const { user } = useSelector((state) => state.auth)
 	const dispatch = useDispatch()
@@ -48,7 +49,7 @@ export const FormRecoveryWithPass = ({ toStep, userData }) => {
 		if (user) {
 			toStep(4)
 		}
-	}, [user, toStep])
+	}, [user, toStep, dispatch])
 	return (
 		<Box
 			className={styles.form}
@@ -62,7 +63,10 @@ export const FormRecoveryWithPass = ({ toStep, userData }) => {
 						title="Назад"
 						variant="text"
 						startIcon={<IconArrow props='#4C464B' />}
-						handleClick={() => toStep(2)}
+						handleClick={() => {
+							toStep(2)
+							dispatch(resetMessage())
+						}}
 						style={{
 							color: '#4C464B'
 						}}
