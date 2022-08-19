@@ -2,14 +2,10 @@ import { CircularProgress, Stack, Table, TableBody, TableCell, TableContainer, T
 import React, { useEffect, useState } from 'react'
 import IconDownload from '../../../assets/icons/IconDownload'
 import { ButtonApp } from '../../../components/ButtonApp/ButtonApp'
-import { TableCustom } from '../../../components/TableCustom/TableCustom'
 import styles from './Profile.module.css'
 import mainStyles from './../../../styles/index.module.css'
 import { addListNumber } from '../../../api/helperFunctions'
-import checklistService from '../../../services/checklistService'
-import * as FileSaver from "file-saver";
-import * as XLSX from "xlsx";
-import DownloadExcel from '../../../components/DownloadButton/DownloadExcel'
+
 import axios from 'axios'
 
 const columns = [
@@ -28,15 +24,6 @@ const columns = [
 		minWidth: 'fit-content',
 	},
 ];
-// const formatData = ({}) => {
-// 	return {
-// 		number: i,
-// 		analysis: ,
-// 		indicators: ,
-// 		description: ,
-// 	}
-// }
-
 
 export const CheckList = ({ checkListNumber, checkedUser }) => {
 	// const [number, setNumber] = useState()
@@ -68,10 +55,9 @@ export const CheckList = ({ checkListNumber, checkedUser }) => {
 		setCheckList(formatData(checkListArr))
 		// checkedUser?.checklist?.['0'].
 	}, [checkedUser, checkListNumber])
-	
+
 
 	// const [data, setData] = useState([])
-	// const fileName = "myfile"; // here enter filename for your excel file
 	const handleDownloadcheckList = async (id) => {
 		try {
 			const response = await axios.create({
@@ -95,24 +81,7 @@ export const CheckList = ({ checkListNumber, checkedUser }) => {
 			console.log(err);
 		}
 	};
-	// useEffect(() => {
-	// 	const downloadChecklist = async(checkListId) => {
-	// 		const req = await axios.get(`https://med-tech.herokuapp.com/checklist/download/${checkListId}`,
-	// 			{
-	// 				headers: {
-	// 					'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-	// 					Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('user'))?.jwt_token
-	// 				}
-	// 			}
-	// 		).then(res => setData(res.data))
-	// 		console.log(req);
-	// 	}
-	// 	downloadChecklist()
-	// 	// const fetchData = () => {
-	// 	// 	setData(downloadChecklist())
-  //   // }
-  //   // fetchData()
-	// }, [checkListId, data, setData])
+
 	return (
 		<Stack
 			className={styles.profile__content}
@@ -123,7 +92,6 @@ export const CheckList = ({ checkListNumber, checkedUser }) => {
 			>
 				<Typography className={mainStyles.subtitle} component={'h3'} children={'Чек-лист'} />
 				<Stack direction='row' gap='40px' justifyContent='flex-end'>
-					{/* <DownloadExcel data={data} fileName={ fileName }/> */}
 					<ButtonApp
 						title='Скачать чек-лист'
 						variant='outlined'
@@ -133,7 +101,7 @@ export const CheckList = ({ checkListNumber, checkedUser }) => {
 							minWidth: 'fit-content',
 							color: '#68B7EC'
 						}}
-						handleClick={()=>handleDownloadcheckList(checkListId)}
+						handleClick={() => handleDownloadcheckList(checkListId)}
 					/>
 					<ButtonApp title={"Сохранить"} variant={'contained'}
 						style={{

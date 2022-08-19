@@ -19,7 +19,7 @@ import axios from 'axios'
 const schema = Yup.object().shape({
 	// 'blood_group': Yup.string('sdad').required('Обязательное поле'),
 	// RW_blood_1: "Кровь на RW",
-	// "registration_date": "Дата взятия на учет",
+	registration_date: Yup.string().required('Введите дату'),
 	// "Rh_patient": "Резус-принадлежность беременной",
 	// "RW_blood_2": "Кровь на RW 2",
 	// "came_from": "Прибыла из другой мед. организации: ",
@@ -28,17 +28,17 @@ const schema = Yup.object().shape({
 	// "from": "Указать откуда",
 	// "Rh_antibody_titer_28": "Титр резус-антител в 28 нед. беременности",
 	// "HIV_partner": "Кровь на ВИЧ партнерa",
-	'last_name': Yup.string('sdad').required('Обязательное поле'),
-	'name': Yup.string('sdad').required('Обязательное поле'),
-	'patronymic': Yup.string('sdad').required('Обязательное поле'),
-	// "date_of_birth": "Число, месяц, год рождения",
+	last_name: Yup.string().required('Введите имя'),
+	name: Yup.string().required('Введите фамилию'),
+	patronymic: Yup.string().required('Введите отчество'),
+	date_of_birth: Yup.string().required('Введите дату рождения'),
 	// "age": "Возраст",
 	// "patient_category": "Категория пациента",
 	// "insurance": "Территория страхования",
 	// "social_security_card_number": "Номер удостоверения соц. защиты",
-	// "phone": "Телефон",
+	phone: Yup.string().min(13, 'Введите номер телефона').required('Введите телефон'),
 	// "citizenship": "Гражданство",
-	// "permanent_residence": "Постоянное место жительства",
+	permanent_residence: Yup.string().required('Введите место жительства'),
 	// "work": "Место работы",
 	// "job_title": "Должность",
 	// "work_phone": "Рабочий телефон",
@@ -52,7 +52,7 @@ const schema = Yup.object().shape({
 	// "work_partner": "Место работы мужа/партнера",
 	// "work_phone_partner": "Номер телефона мужа/партнера",
 	// "gestational_age_period": "Срок беременности по последним месячным",
-	// "gestational_age_ultrasound": "От УЗИ",
+	gestational_age_ultrasound: Yup.string().required('Введите неделю от УЗИ'),
 	// "estimated_date_of_birth": "Предполагаемая дата родов",
 	// "pregnant_number": "Беременность (которая)",
 	// "childbirth_number": "Роды (которые)",
@@ -93,7 +93,7 @@ const schema = Yup.object().shape({
 	// "ultrasound_18": "УЗИ (в 18 недель)",
 	// "folic_acid": "Фолиевая кислота",
 	// "potassium_iodide": "Калия йодид"
-}).required('Обязательное полdddddе')
+}).required()
 const requiredLabels = [
 	'blood_group',
 	// 'Rh_patient', 'Rh_partner', 'Rh_antibody_titer_28', 'RW_blood_1', 'RW_blood_2', 
@@ -102,7 +102,7 @@ const requiredLabels = [
 	// 'marital_status', 'education'
 ]
 const MedCard = ({ checkedUser, setCheckedUser, setMedcard }) => {
-
+	const [edit,setEdit]=useState(false)
 	const medcardId = checkedUser?.medcard?.id
 	const newUserDefaultValues = Object?.keys(labelsObj)?.reduce((acc, item) => {
 		acc[item] = ''
@@ -120,6 +120,8 @@ const MedCard = ({ checkedUser, setCheckedUser, setMedcard }) => {
 		defaultValues: checkedUser ? { ...checkedUser?.medcard } : newUserDefaultValues,
 		mode: 'onChange'
 	});
+	// const [edit, setEdit] = useState(false)
+	// if()
 	const onSubmit = (data) => {
 		const req = async () => {
 			const response = checkedUser
@@ -195,7 +197,6 @@ const MedCard = ({ checkedUser, setCheckedUser, setMedcard }) => {
 											<InputApp
 												field={{ value, onChange, name, onBlur }}
 												label={label}
-												
 												// defaultValues={checkedUser ? checkedUser?.medcard?.[el[0]] : ''}
 												value={value}
 												errors={errors}
@@ -230,8 +231,9 @@ const MedCard = ({ checkedUser, setCheckedUser, setMedcard }) => {
 						}}
 						handleClick={()=>handleDownloadMedcard(medcardId)}
 					/>
-					<ButtonApp title={"Сохранить"} variant={'contained'}
-						type={'submit'}
+					<ButtonApp title={!edit ? "Редактировать" : "Сохранить"} variant={'contained'}
+						type={edit ? 'button' : 'submit'}
+						handleClick={()=>setEdit(!edit)}
 						style={{
 							width: "fit-content",
 							minWidth: '140px',

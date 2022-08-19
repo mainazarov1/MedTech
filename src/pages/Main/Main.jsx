@@ -19,6 +19,7 @@ import styles from './Main.module.css';
 import { getAllDoctor } from "../../redux/features/doctor/doctorAction";
 import { getAllPatient, getAllPatientDoc } from "../../redux/features/patient/patientAction";
 import ProfilePatient from "./Profile/ProfilePatient";
+import ProfileHolder from "./Profile/ProfileHolder";
 const Main = () => {
 	const { isLoading, user } = useSelector((state) => state.auth)
 	const dispatch = useDispatch()
@@ -52,10 +53,10 @@ const Main = () => {
 					<Routes>
 						<Route path={"schedule"} element={<Schedule />} />
 						<Route path={"employees"} element={<Employees />} />
-						<Route path={"employees/:id"} element={<Profile />} />
+						<Route path={"employees/:id"} element={<ProfileHolder mode="employeesProfile" />} />
 						<Route path={"patients"} element={<Patients />} />
 						<Route path={"patients/:id"} element={<ProfilePatient />} />
-						<Route path={"profile"} element={<Profile/>} />
+						<Route path={"profile"} element={<ProfileHolder mode="myProfile" />} />
 					</Routes>
 				</Container>
 			</Stack>

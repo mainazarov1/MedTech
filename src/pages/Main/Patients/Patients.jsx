@@ -16,7 +16,7 @@ import { setSwitch } from '../../../redux/features/patient/patientSlice'
 import { getAllPatient } from '../../../redux/features/patient/patientAction'
 import axios from 'axios'
 const Patients = () => {
-	// const { user } = useSelector((state) => state.auth);
+	const { user } = useSelector((state) => state.auth);
 	const { patient } = useSelector(state => state.patient)
 	const dispatch = useDispatch()
 	// const roles = (user?.role === 'superadmin')
@@ -62,8 +62,8 @@ const Patients = () => {
 	];
 	const [patients, setPatients] = useState([])
 	const [search, setSearch] = useState('')
-const [achivate, setAchivate] = useState('')
-const navigate = useNavigate()
+	const [achivate, setAchivate] = useState('')
+	const navigate = useNavigate()
 	const handleAchivate = (row) => {
 		setAchivate(row)
 		dispatch(setSwitch(row.id));
@@ -72,7 +72,7 @@ const navigate = useNavigate()
 		navigate('/patients/new')
 	}
 	const formatData = (arr) => {
-		return arr.map(({ id, last_name, name, patronymic, phone, email, week, address, active , role}, i) => {
+		return arr.map(({ id, last_name, name, patronymic, phone, email, week, address, active, role }, i) => {
 			return {
 				id: id,
 				number: `00${i + 1}`,
@@ -90,7 +90,7 @@ const navigate = useNavigate()
 		// dispatch(getAllPatient())
 		if (achivate) {
 			const achivateAsyncFunc = async () => {
-				await achivateService.achivateUser({ id: achivate.id, role: achivate.role }).then(res=>res.data)
+				await achivateService.achivateUser({ id: achivate.id, role: achivate.role }).then(res => res.data)
 			}
 			achivateAsyncFunc()
 			setAchivate('')
@@ -177,22 +177,25 @@ const navigate = useNavigate()
 				/>
 				{/* <SelectBtn label={"Врач"} values={doctor} /> */}
 				<Stack direction='row' gap='40px' justifyContent='flex-end'>
-					<ButtonApp
-						title='Скачать список'
-						variant='outlined'
-						endIcon={<IconDownload props='#68B7EC' />}
-						style={{
-							width: "fit-content",
-							minWidth: 'fit-content',
-							color: '#68B7EC'
-						}}
-						handleClick={handleDownloadPatients}
-					/>
+					{user?.role === 'superadmin'
+						? < ButtonApp
+							title='Скачать список'
+							variant='outlined'
+							endIcon={<IconDownload props='#68B7EC' />}
+							style={{
+								width: "fit-content",
+								minWidth: 'fit-content',
+								color: '#68B7EC'
+							}}
+							handleClick={handleDownloadPatients}
+						/>
+						: null
+					}
 					<ButtonApp title={"Добавить пациента"} variant={'contained'} handleClick={addPatient} />
 				</Stack>
 			</Stack>
 			<Stack className={styles.patients__table}>
-				<TableCustom columns={columns} rows={rows} radio={true} handleClick={handleAchivate}/>
+				<TableCustom columns={columns} rows={rows} radio={true} handleClick={handleAchivate} />
 			</Stack>
 		</section>
 	)

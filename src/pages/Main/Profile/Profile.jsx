@@ -17,11 +17,11 @@ import doctorService from '../../../services/doctorService'
 import { useEffect } from 'react'
 import patientService from '../../../services/patientService'
 import MedCard from './MedCard'
-import { weekdays } from '../../../utils/mock'
+import { weekdaysWorkshift } from '../../../utils/mock'
 import { icons } from './../../../assets/icons/index'
-const Profile = () => {
-	const { id: userId } = useParams()
-	const location = useLocation()
+const Profile = ({ data, mode, onUpdateProfile }) => {
+	// const { id: userId } = useParams()
+	// const location = useLocation()
 	const { user } = useSelector(state => state.auth)
 	const { isLoading } = useSelector(state => state.doctor)
 
@@ -31,13 +31,13 @@ const Profile = () => {
 		name: Yup.string(),
 		patronymic: Yup.string(),
 		phone: Yup.string()
-			.min(10, 'Введите номер телефона')
-		,
+			.min(13, 'Введите номер телефона'),
 		email: Yup.string()
-			.email('Неверно указана почта')
-		,
+			.email('Неверно указана почта'),
 	});
-	const [checkedUser, setCheckedUser] = useState()
+	const [checkedUser, setCheckedUser] = useState(data)
+
+
 	// const defaultUserValues = Object?.keys({
 	// 	last_name: '',
 	// 	name: '',
@@ -50,24 +50,9 @@ const Profile = () => {
 	// 	return acc;
 	// }, {})
 	// React-Hook-Form
-	useEffect(() => {
-		if (location.pathname === `/employees/${userId}`) {
-			async function check() {
-				const response = await doctorService.getDoctorById(userId)
-				setCheckedUser(response)
-			}
-			check()
-		} else if (location.pathname === `/patients/${userId}`) {
-			async function check() {
-				const response = await patientService.getPatientById(userId)
-				setCheckedUser(response)
-			}
-			check()
-		} else {
-			setCheckedUser(user)
-		}
-	}, [userId, location, user])
+
 	const [edit, setEdit] = useState(false)
+	const [workshift, setWorkshift] = useState()
 	const { handleSubmit, control,
 		formState: {
 			errors,
@@ -99,11 +84,21 @@ const Profile = () => {
 	const saveFunc = () => {
 		setEdit(!edit)
 	}
-	const disableInput = () => {
-		return edit === false;
-	}
 	const onSubmit = (data) => {
+		console.log(data);
+		onUpdateProfile({
+			...data,
+			id: checkedUser.id
+		});
 	}
+	console.log(data.doctorworkshift);
+	const updateWorkshift = (workshift) => {
+		
+	}
+	const createWorkshift = (weekday) => {
+		
+	}
+	console.log(workshift);
 	return (
 		<section
 			className={styles.profile}
@@ -134,7 +129,7 @@ const Profile = () => {
 						{
 							user?.role === 'superadmin'
 								? <ButtonApp title={edit ? 'Сохранить' : 'Редактировать'} variant={'contained'} style={{ width: 'fit-content' }} handleClick={edit ? saveFunc : editFunc}
-									type={edit ? 'submit' : 'button'}
+									type={!edit ? 'submit' : 'button'}
 								/>
 								: null
 						}
@@ -163,7 +158,7 @@ const Profile = () => {
 										style={{
 											display: 'none'
 										}}
-										disabled
+										disabled={!edit}
 									/>
 								</Stack>
 							</Stack>
@@ -199,7 +194,7 @@ const Profile = () => {
 										<Controller name='patronymic' control={control}
 											render={({ field: { value, onChange, name, onBlur } }) => (
 												< InputApp
-													field={{ value, onChange, name, onBlur }} value={edit ? value : checkedUser?.patronymic} label='Отчество' errors={errors} disabled={!edit} />
+													field={{ value, onChange, name, onBlur }} value={value} label='Отчество' errors={errors} disabled={!edit} />
 											)} />
 									}
 								/>
@@ -208,7 +203,7 @@ const Profile = () => {
 									children={
 										<Controller name='patients_num' control={control}
 											render={({ field: { value, onChange, name, onBlur } }) => (
-												<InputApp field={{ value, onChange, name, onBlur }} label='Количество пациентов' value={checkedUser?.patients_num} errors={errors} disabled />
+												<InputApp field={{ value, onChange, name, onBlur }} label='Количество пациентов' value={value} errors={errors} disabled />
 											)} />
 									} />
 								<Stack
@@ -233,8 +228,10 @@ const Profile = () => {
 								<Stack gap={'10px'}>
 									<Typography children={'Рабочие дни'} />
 									<Stack direction={'row'} gap={'10px'}>
-										{weekdays.map((el, i) => {
-											return <ButtonApp key={i} title={el} variant={'contained'} style={{ minWidth: 'calc((100% - 120px)/7)', height: '40px' }} />
+										{weekdaysWorkshift.map((el, i) => {
+											const free = data.doctorworkshift.filter(weekday => weekday.weekday === i)
+											console.log(free);
+											return <ButtonApp handleClick={free ? ()=>setWorkshift(free) : ()=>setWorkshift(i)} key={i} title={el} variant={free[0]?.weekday === i ? 'contained' : 'outlined'} style={{ minWidth: 'calc((100% - 120px)/7)', height: '40px' }} />
 										})}
 									</Stack>
 								</Stack>
@@ -243,21 +240,21 @@ const Profile = () => {
 									<Stack direction={'row'} gap={'10px'}>
 										<Stack direction={'row'} alignItems={'center'} gap={'4px'}>
 											<Typography children={'с'} marginTop={'6px'} />
-											<InputApp placeholder={'00:00'} type={'time'} />
+											<InputApp value={workshift?.[0]?.fromMorning} placeholder={'09:00'} type={'time'} />
 										</Stack>
 										<Stack direction={'row'} alignItems={'center'} gap={'4px'}>
 											<Typography children={'до'} marginTop={'6px'} />
-											<InputApp placeholder={'00:00'} type={'time'} />
+											<InputApp value={workshift?.[0]?.fromAfternoon} placeholder={'12:00'} type={'time'} />
 										</Stack>
 									</Stack>
 									<Stack direction={'row'} gap={'10px'}>
 										<Stack direction={'row'} alignItems={'center'} gap={'4px'}>
 											<Typography children={'с'} marginTop={'6px'} />
-											<InputApp placeholder={'00:00'} type={'time'} />
+											<InputApp value={workshift?.[0]?.tillAfternoon} placeholder={'00:00'} type={'time'} />
 										</Stack>
 										<Stack direction={'row'} alignItems={'center'} gap={'4px'}>
 											<Typography children={'до'} marginTop={'6px'} />
-											<InputApp placeholder={'00:00'} type={'time'} />
+											<InputApp value={workshift?.[0]?.tillEvening} placeholder={'00:00'} type={'time'} />
 										</Stack>
 									</Stack>
 								</Stack>
@@ -267,11 +264,11 @@ const Profile = () => {
 
 				</Stack>
 			</Stack>
-			{location.pathname === `/profile` ?
-				< ListOfPatient /> : null
+			{mode === `myProfile` &&
+				< ListOfPatient />
 			}
-			{location.pathname === `/employees/${userId}` ?
-				< ListOfPatient /> : null
+			{mode === `employeesProfile` &&
+				< ListOfPatient />
 			}
 			{/* {location.pathname === `/patients/${userId}`
 				? <CheckList />
