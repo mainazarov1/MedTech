@@ -1,4 +1,4 @@
-import { InputAdornment, Stack, Typography } from '@mui/material'
+import { CircularProgress, InputAdornment, Stack, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import IconDownload from '../../../assets/icons/IconDownload'
 import { ButtonApp } from '../../../components/ButtonApp/ButtonApp'
@@ -79,7 +79,6 @@ const Employees = () => {
 	const [modalDoctorInfo, setModalDoctorInfo] = useState(false)
 	const [modalCreateAdmin, setModalCreateAdmin] = useState(false)
 	const [checkedUser, setCheckedUser] = useState()
-	const [step, setStep] = useState()
 	const handleClick = (e) => {
 		setCheckedUser(...doctor.filter(doc => doc.id === e))
 		setModalDoctorInfo(true)
@@ -91,9 +90,11 @@ const Employees = () => {
 			{
 				id: id,
 				number: addListNumber(i),
-				doctor: <span onClick={() => handleClick(id)}>{showShortName({ last_name, name, patronymic })}</span>,
+				doctor: user?.role === 'superadmin'
+					? <Link to={`${id}`}>{showShortName({ last_name, name, patronymic })}</Link>
+					: <span onClick={() => handleClick(id)}> { showShortName({ last_name, name, patronymic }) }</span>
+				,
 				role: role,
-				// doctor: <Link to={`${id}`}>{showShortName({ last_name, name, patronymic })}</Link>,
 				phone: <a href={`tel:${phone}`}>{phone}</a>,
 				email: <a href={`mailto:${email}`} target='_blank' rel="noreferrer" >{email}</a>,
 				patients: patients_num,
@@ -149,7 +150,7 @@ const Employees = () => {
 			<Typography
 				className={mainStyles.subtitle}
 				component={"h3"}
-				children={"Список пользователей"}
+				children={"Список сотрудников"}
 			/>
 			<Stack
 				direction="row"
@@ -168,11 +169,7 @@ const Employees = () => {
 					style={{
 						minWidth: 'fit-content',
 						color: '#68B7EC',
-						marginTop: '-6px',
-						'& input': {
-							height: '34px',
-
-						}
+						marginTop: '-9px',
 					}}
 				/>
 				{/* <SelectBtn label={"Врач"} values={doctor} getDoctorId={setDoctorId} /> */}
@@ -192,11 +189,11 @@ const Employees = () => {
 					}
 				</Stack>
 			</Stack>
-			<Stack
-				className={styles.employees__table}
-			>
-				<TableCustom columns={columns} rows={rows} radio={true} handleClick={handleAchivate} />
-			</Stack>
+				<Stack
+					className={styles.employees__table}
+				>
+					<TableCustom columns={columns} rows={rows} radio={true} handleClick={handleAchivate} />
+				</Stack>
 		</section>
 	)
 }

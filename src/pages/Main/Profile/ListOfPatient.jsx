@@ -1,5 +1,5 @@
 
-import { Stack, Typography } from '@mui/material'
+import { CircularProgress, Stack, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
@@ -23,7 +23,7 @@ export const ListOfPatient = () => {
 			minWidth: 'fit-content',
 		},
 	];
-	
+
 	const { patient } = useSelector(state => state.patient)
 	const { id: userId } = useParams()
 	const { user } = useSelector(state => state.auth)
@@ -32,7 +32,7 @@ export const ListOfPatient = () => {
 		return arr?.map(({ id, last_name, name, patronymic, phone, email }, i) => {
 			return {
 				number: addListNumber(i),
-				patient: <Link to={`/patients/${id}`}>{showShortName({last_name, name, patronymic})}</Link>,
+				patient: <Link to={`/patients/${id}`}>{showShortName({ last_name, name, patronymic })}</Link>,
 				phone: <a href={`tel:${phone}`}>{phone}</a>,
 				email: <a href={`mailto:${email}`} target='_blank' rel={'noreferrer'}>{email}</a>,
 			}
@@ -47,7 +47,7 @@ export const ListOfPatient = () => {
 					}
 					return filteredPatient()
 				}
-				if (['admin','superadmin'].includes(user?.role)) {
+				if (['admin', 'superadmin'].includes(user?.role)) {
 					const filteredPatient = () => {
 						return patient.filter(el => el?.doctor?.id == userId)
 					}
@@ -67,9 +67,14 @@ export const ListOfPatient = () => {
 			className={styles.profile__content}
 		>
 			<Typography children={'Список пациентов'} />
-			<Stack className={styles.profile__table}>
-				<TableCustom rows={rows} columns={columns} />
-			</Stack>
+			{!patient && !rowsData
+				? <Stack display={'flex'} justifyContent={'center'} alignItems={'center'} position={'relative'} width={'100%'} height={'650px'}>
+					<CircularProgress />
+				</Stack>
+				:
+				<Stack className={styles.profile__table}>
+					<TableCustom rows={rows} columns={columns} />
+				</Stack>}
 		</Stack>
 	)
 }

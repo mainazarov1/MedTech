@@ -62,7 +62,7 @@ export const SelectBtn = ({ label = 'Врач', values, radio = false, handleCli
 				defaultValue={''}
 				value={radio ? '' : name}
 			>
-				<MenuItem value=''>{label}</MenuItem>
+				<MenuItem sx={{display: 'none'}} value=''>{label}</MenuItem>
 				{showNames()}
 			</CssSelect>
 		</FormControl>

@@ -14,6 +14,7 @@ import { labelsGroupArr, labelsObj } from '../../../utils/medcardMock'
 import { useEffect } from 'react'
 import medcardService from '../../../services/medcardService'
 import api from '../../../api/api'
+import axios from 'axios'
 
 const schema = Yup.object().shape({
 	// 'blood_group': Yup.string('sdad').required('Обязательное поле'),
@@ -102,7 +103,7 @@ const requiredLabels = [
 ]
 const MedCard = ({ checkedUser, setCheckedUser, setMedcard }) => {
 
-
+	const medcardId = checkedUser?.medcard?.id
 	const newUserDefaultValues = Object?.keys(labelsObj)?.reduce((acc, item) => {
 		acc[item] = ''
 		return acc;
@@ -135,11 +136,33 @@ const MedCard = ({ checkedUser, setCheckedUser, setMedcard }) => {
 		// console.log(data);
 
 	}
-	useEffect(() => {
-		const req = async (data) => {
+	// useEffect(() => {
+	// 	const req = async (data) => {
+	// 	}
+	// })
+	const handleDownloadMedcard = async (id) => {
+		try {
+			const response = await axios.create({
+				baseURL: 'https://med-tech.herokuapp.com/',
+				headers: {
+					Authorization: `Bearer ${JSON.parse(localStorage.getItem('user'))?.jwt_token}`,
+					'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+				},
+				responseType: 'arraybuffer'
+			})(
+				`/med-card/download/${medcardId}`
+			);
+			const url = URL.createObjectURL(new Blob([response.data]));
+			const link = document.createElement("a");
+			link.href = url;
+			link.setAttribute("download", `${checkedUser?.last_name}-medcard.xlsx`); //or any other extension
+			document.body.appendChild(link);
+			link.click();
+			link.remove();
+		} catch (err) {
+			console.log(err);
 		}
-	})
-
+	};
 	const showMedcard = () => {
 		return Object.entries(labelsGroupArr)?.map(([groupKey, groupObj], i) => {
 			return <Accordion key={i}>
@@ -205,6 +228,7 @@ const MedCard = ({ checkedUser, setCheckedUser, setMedcard }) => {
 							minWidth: 'fit-content',
 							color: '#68B7EC'
 						}}
+						handleClick={()=>handleDownloadMedcard(medcardId)}
 					/>
 					<ButtonApp title={"Сохранить"} variant={'contained'}
 						type={'submit'}
