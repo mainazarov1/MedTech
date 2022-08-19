@@ -64,7 +64,7 @@ const ProfilePatient = () => {
 	} = useForm({
 		resolver: yupResolver(schema),
 		defaultValues: {
-			defaultUserValues
+			...defaultUserValues
 		},
 		mode: 'onChange'
 	});

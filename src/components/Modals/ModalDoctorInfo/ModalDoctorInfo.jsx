@@ -56,8 +56,8 @@ const ModalDoctorInfo = ({ handleClick, checkedUser }) => {
 				alignItems="flex-end"
 			>
 				<span
-				className={classNames(mainStyles.btn_close)}
-				onClick={handleClick}>
+					className={classNames(mainStyles.btn_close)}
+					onClick={()=>handleClick(false)}>
 				<CloseIcon/>
 			</span>
 
@@ -66,7 +66,7 @@ const ModalDoctorInfo = ({ handleClick, checkedUser }) => {
 				className={styles.modal__title}
 				children={'Страница пользователя'}
 			/>
-			<img className={styles.modal__avatar} src={checkedUser && checkedUser?.image !== null ? icons.avatar : 'https://memchik.ru/images/templates/chto_proishodit.jpg'} alt="" srcset="" />
+			<img className={styles.modal__avatar} src={checkedUser && checkedUser?.image !== null ? icons.avatar : 'https://memchik.ru/images/templates/chto_proishodit.jpg'} alt="" srcSet="" />
 			<Stack
 				direction={'row'} flexWrap={'wrap'} gap={'20px'} >
 				{Object.entries({ last_name: 'Фамилия',name: 'Имя',patronymic: 'Отчество',patients_num: 'Количество пациентов',phone: 'Номер телефона',email: 'Email' }).map(([key,item],i) => {
@@ -77,7 +77,7 @@ const ModalDoctorInfo = ({ handleClick, checkedUser }) => {
 					><InputApp label={item} value={checkedUser?.[key]} disabled={true} /></Stack>
 				})}
 			</Stack>
-			<Stack marginTop={'30px'} gap={'6px'}>
+			<Stack marginTop={'25px'} gap={'6px'}>
 				<p className={styles.modal__label} children={'Рабочие дни недели'} />
 				<Stack direction={'row'} gap={'10px'} width='410px'>
 					{weekdays.map((el, i) => {
@@ -85,7 +85,7 @@ const ModalDoctorInfo = ({ handleClick, checkedUser }) => {
 					})}
 				</Stack>
 			</Stack>
-			<Stack marginTop={'30px'} gap={'6px'}>
+			<Stack marginTop={'25px'} gap={'6px'}>
 				<p className={styles.modal__label} children={'Часы работы'} />
 				<Stack direction={'row'} gap={'10px'} width='410px'>
 					<Stack gap={'10px'}>
