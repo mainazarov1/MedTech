@@ -100,8 +100,6 @@ const ProfilePatient = () => {
 				medcard: checkedUser?.id,
 				doctor: parseInt(doctorId)
 			}
-			console.log(registerData);
-
 			const response = await api.post(`patient/register`, registerData
 			).then(res => res.data)
 			console.log(response);
@@ -112,7 +110,18 @@ const ProfilePatient = () => {
 	}
 	const addCheckList = async () => {
 		console.log(new Date().toISOString());
-		await checklistService.createCheckList({ question: 1, answer: 1, patient: checkedUser?.id, date: new Date().toISOString() })
+		const answers = await api.get(`/question/1`).then(res => res.data.question);
+
+		const newAnswers = {
+			answer: answers.map((el, i) => {
+				const obj = {}
+				obj[`answer${i + 1}`] = '';
+				obj[`description${i+1}`] = '';
+				return obj
+			})
+		}
+		const answer = await checklistService.createAnswers(newAnswers)
+		await checklistService.createCheckList({ question: 1, answer: answer.id, patient: checkedUser?.id, date: new Date().toISOString() })
 	}
 	const showCheckList = () => {
 		return checkLists?.map((item, i) => {
@@ -124,6 +133,7 @@ const ProfilePatient = () => {
 				id={item.id} title={`Чек-лист №${i + 1}`} variant='contained' type='button' startIcon={<IconList />} style={{ justifyContent: 'flex-start' }} />
 		})
 	}
+
 	useEffect(() => {
 		setCheckLists(checkedUser?.checklist)
 	}, [checkedUser, setCheckLists])
@@ -262,7 +272,7 @@ const ProfilePatient = () => {
 			} */}
 			{location.pathname === `/patients/new`
 				? <MedCard setCheckedUser={setCheckedUser} setMedcard={setMedcard} />
-				: location.pathname === `/patients/${userId}`
+				: location.pathname === `/patients/${userId}`  && rightView
 					? <MedCard checkedUser={checkedUser} />
 					: <CheckList checkListNumber={checkListNumber} checkedUser={checkedUser} />
 			}

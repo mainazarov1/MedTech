@@ -1,10 +1,70 @@
 import { Stack, Typography } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ButtonApp } from '../../ButtonApp/ButtonApp'
 import CloseIcon from '@mui/icons-material/Close';
 import styles from './ModalAppointmentCreate.module.css'
 import { InputApp } from '../../InputApp/InputApp';
-export const ModalAppointmentCreate = ({ handleClick, date, time }) => {
+import api from '../../../api/api';
+import { useSelector } from 'react-redux';
+export const ModalAppointmentCreate = ({ doctorId, handleClick, date, time, data }) => {
+	const { patient } = useSelector(state => state.patient)
+	const [patients, setPatients]=useState()
+	const [search, setSearch] = useState('')
+	// const [patientId, setPatientId] = useState()
+
+	useEffect(() => {
+		function getData() {
+			if (patient !== null) {
+				if (search) {
+					const searchFilter = () => {
+						return patient.filter((pat) => {
+							const fullName = `${pat.last_name}${pat.name}${pat.patronymic}`.toLowerCase();
+							const reversedFullName = `${pat.last_name}${pat.name}${pat.patronymic}`.toLowerCase();
+							const trimmedSearchValue = search.replace(/\s+/g, '').toLowerCase();
+							return fullName.includes(trimmedSearchValue) || reversedFullName.includes(trimmedSearchValue)
+						})
+					}
+					setPatients((searchFilter()))
+				}
+				else {
+					setPatients(patient)
+				}
+			}
+		}
+		getData()
+	}, [search])
+	console.log(date.slice(0,11),time,date.slice(16))
+	
+	const createAppointment = async (e) => {
+		console.log(e);
+		try {
+			await api.get(`/patient/findBySurname/${search}`).then(res => res.data).then(data => {
+				try {
+					console.log(data[0].id);
+					const patientId = data[0].id;
+					api.post('/appointment', {
+						date: `${date.slice(0, 11)}${time}${date.slice(16)}`,
+						doctor: doctorId,
+						patient: patientId
+					})
+					handleClick()
+				} catch (error) {
+					console.log('Apoointment not register');
+				}
+			})
+		} catch (e) {
+			console.log(e);
+		};
+	}
+	const removeAppointment = async (e) => {
+		const appointmentId = e.data.id
+		try {
+			await api.delete(`/appointment/cancel/${appointmentId}`)
+			await handleClick()
+		} catch (error) {
+			console.log('Apoointment not delete');
+		}
+	}
 	return (
 		<Stack className={styles.modal}
 		>
@@ -74,10 +134,17 @@ export const ModalAppointmentCreate = ({ handleClick, date, time }) => {
 			<Stack
 				gap={'30px'}
 			>
-				<InputApp label={'Пациент'} placeholder='Выбрать пациента' />
+				<InputApp label={'Пациент'} placeholder='Выбрать пациента'
+					onChange={(e) => setSearch(e.target.value)}
+					value={data?.patient?.last_name}
+				/>
+				
 				<ButtonApp style={{
-					height: '50px'
-				}} variant='contained' title={'Записать'} />
+					height: '50px',
+					background: data.free ? '#68b7ec' : '#d42027'
+				}}
+					handleClick={data.free ? () => createAppointment(data) : () => removeAppointment(data)}
+					variant='contained' title={data.free ? 'Записать' : 'Отменить запись'} />
 			</Stack>
 		</Stack>
 	)

@@ -1,14 +1,14 @@
 import { CircularProgress, Stack, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import Ellipse from '../../assets/icons/Ellipse'
 import EllipseEmpty from '../../assets/icons/EllipseEmpty'
 import { ButtonApp } from '../ButtonApp/ButtonApp'
 import styles from './WorkShift.module.css'
-export const WorkShift = ({ modal, getTime }) => {
+export const WorkShift = ({ modal, getTime, getData }) => {
 	const { workshift, isLoading } = useSelector(state => state.workshift);
 	const { appointment } = useSelector((state) => state.appointment)
-
+	// const [data,setData] = useState()
 	const handleClick = (e) => {
 		getTime(e.target.innerText);
 		modal(true)
@@ -47,27 +47,32 @@ export const WorkShift = ({ modal, getTime }) => {
 		// 	// }
 		// }
 		// )
-
 		const workshiftArr = workshift?.map((item, i) => {
 			return {
 				time: item.length < 5 ? '0' + item : item,
-				free: false,
+				free: true,
+				data: null
 			}
 		})
-		console.log(workshiftArr);
 
 		appointment?.forEach((item, i) => {
 			const time = item?.date.slice(11,16)
 			workshiftArr.forEach((el, index) => {
 				if (time === el?.time) {
-					workshiftArr[index].free = true
+					workshiftArr[index].free = false
+					workshiftArr[index].data = item
 				}
 			})
 		})
 		return workshiftArr?.map((el, i) => {
-			return <ButtonApp key={i} padding='20px' handleClick={handleClick} className={[styles.workShift__btn, el.free ? styles.workShift__btn_close : ''].join(' ')} title={el.time} variant='contained'/>
+			return <ButtonApp key={i} padding='20px' handleClick={(e) => {
+				handleClick(e)
+				// setData(el)
+				getData(el)
+			}} className={[styles.workShift__btn, !el.free ? styles.workShift__btn_close : ''].join(' ')} title={el.time} variant='contained' />
 		})
 	}
+	
 	return (workshift?.length !== 0 && workshift !== null
 		? <Stack
 			className={styles.workShift}

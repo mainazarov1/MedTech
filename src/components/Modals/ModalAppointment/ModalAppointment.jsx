@@ -9,7 +9,7 @@ export const ModalAppointment = ({ handleClick, data }) => {
 	const { patient } = useSelector(state => state.patient)
 	const { doctor } = useSelector(state => state.doctor)
 	console.log(data);
-	console.log(doctor, patient);
+	// console.log(data);
 	return (
 		<Stack className={styles.modal}
 		>
@@ -54,7 +54,7 @@ export const ModalAppointment = ({ handleClick, data }) => {
 			>
 				<img
 					className={styles.modal__avatar}
-					src={data?.image === null ? data.image : icons.avatar} alt='avatar'></img>
+					src={data?.image !== null ? data.doctorImage : icons.avatar} alt='avatar'></img>
 				<Stack
 					gap={'10px'}
 				>
@@ -62,7 +62,7 @@ export const ModalAppointment = ({ handleClick, data }) => {
 						className={styles.modal__text}>
 						{data.doctor}
 					</Typography>
-					<a className={styles.modal__text} href="tel:+996 700 999 666">{data.doctorPhone}</a>
+					<a className={styles.modal__text} href={`tel:${data.doctorPhone}`}>{data.doctorPhone}</a>
 				</Stack>
 			</Stack>
 			<Stack
@@ -74,7 +74,7 @@ export const ModalAppointment = ({ handleClick, data }) => {
 			>
 				<img
 					className={styles.modal__avatar}
-					src={data?.image === null ? data.image : icons.avatar} alt='avatar'/>
+					src={data?.image !== null ? data.patientImage : icons.avatar} alt='avatar'/>
 				<Stack
 					gap={'10px'}
 				>

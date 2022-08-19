@@ -91,7 +91,7 @@ const Employees = () => {
 				id: id,
 				number: addListNumber(i),
 				doctor: user?.role === 'superadmin'
-					? <Link to={`${id}`}>{showShortName({ last_name, name, patronymic })}</Link>
+					? <Link to={`${id}`} >{showShortName({ last_name, name, patronymic })}</Link>
 					: <span onClick={() => handleClick(id)}> { showShortName({ last_name, name, patronymic }) }</span>
 				,
 				role: role,
