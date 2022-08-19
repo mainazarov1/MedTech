@@ -66,7 +66,7 @@ const ModalDoctorInfo = ({ handleClick, checkedUser }) => {
 				className={styles.modal__title}
 				children={'Страница пользователя'}
 			/>
-			<img className={styles.modal__avatar} src={checkedUser && checkedUser?.image !== null ? icons.avatar : 'https://memchik.ru/images/templates/chto_proishodit.jpg'} alt="" srcSet="" />
+			<img className={styles.modal__avatar} src={checkedUser?.image !== null ? checkedUser.image : icons.avatar } alt="" srcSet="" />
 			<Stack
 				direction={'row'} flexWrap={'wrap'} gap={'20px'} >
 				{Object.entries({ last_name: 'Фамилия',name: 'Имя',patronymic: 'Отчество',patients_num: 'Количество пациентов',phone: 'Номер телефона',email: 'Email' }).map(([key,item],i) => {

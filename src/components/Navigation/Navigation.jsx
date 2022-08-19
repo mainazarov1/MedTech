@@ -12,6 +12,7 @@ import { reset } from "../../redux/features/user/userSlice";
 import IconContent from "../../assets/icons/IconContent";
 import IconPatients from "../../assets/icons/IconPatients";
 import IconEmployees from "../../assets/icons/IconEmployees";
+import { icons } from "../../assets/icons";
 
 export const Navigation = () => {
 	const dispatch = useDispatch();
@@ -114,7 +115,11 @@ export const Navigation = () => {
 										<ButtonApp className={styles.nav__profile}
 											variant={isActive ? 'contained' : 'text'}
 											startIcon={
-												<img src={images.manualImg}
+												<img src={
+													user?.image !== null
+														? user.image
+														: icons.avatar
+												}
 													style={{
 														width: '38px',
 														height: '38px',
@@ -129,7 +134,7 @@ export const Navigation = () => {
 													color: isActive ? '#fff' : '#4C464B',
 												}
 											}}
-											title={`${user.surname} ${user.name[0].toUpperCase()}.`}
+											title={`${user.last_name} ${user.name[0].toUpperCase()}.`}
 										/>
 									)}
 								/>

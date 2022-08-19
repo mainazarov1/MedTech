@@ -40,8 +40,7 @@ const ProfilePatient = () => {
 		last_name: Yup.string(),
 		name: Yup.string(),
 		patronymic: Yup.string(),
-		phone: Yup.string()
-			.min(10, 'Введите номер телефона'),
+		phone: Yup.string(),
 		email: Yup.string()
 			.email('Неверно указана почта')
 			.required('Введите Вашу почту'),
@@ -157,7 +156,7 @@ const ProfilePatient = () => {
 						}
 					</Stack>
 					{isLoading
-						? <Stack display={'block'} position={'relative'} width={'100px'} height={'100px'}>
+						? <Stack display={'flex'} justifyContent={'center'} alignItems={'center'} position={'relative'} width={'100%'} height={'600px'}>
 							<CircularProgress />
 						</Stack>
 						: <Stack>
@@ -263,7 +262,7 @@ const ProfilePatient = () => {
 			} */}
 			{location.pathname === `/patients/new`
 				? <MedCard setCheckedUser={setCheckedUser} setMedcard={setMedcard} />
-				: location.pathname === `/patients/${userId}` && rightView
+				: location.pathname === `/patients/${userId}`
 					? <MedCard checkedUser={checkedUser} />
 					: <CheckList checkListNumber={checkListNumber} checkedUser={checkedUser} />
 			}

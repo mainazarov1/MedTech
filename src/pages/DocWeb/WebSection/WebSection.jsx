@@ -94,7 +94,7 @@ export const WebSection = ({ image, title, text, buttonTitle, preTitle, route })
 					</Typography>
 					<Box
 						sx={{
-							maxWidth: "400px",
+							maxWidth: "300px",
 							width: "100%",
 						}}
 					>

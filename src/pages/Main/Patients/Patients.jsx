@@ -14,6 +14,7 @@ import IconScope from '../../../assets/icons/IconScope'
 import achivateService from '../../../services/archiveService'
 import { setSwitch } from '../../../redux/features/patient/patientSlice'
 import { getAllPatient } from '../../../redux/features/patient/patientAction'
+import axios from 'axios'
 const Patients = () => {
 	// const { user } = useSelector((state) => state.auth);
 	const { patient } = useSelector(state => state.patient)
@@ -122,22 +123,45 @@ const navigate = useNavigate()
 		}
 		getData()
 	}, [search, patient, achivate])
+	const handleDownloadPatients = async () => {
+		try {
+			const response = await axios.create({
+				baseURL: 'https://med-tech.herokuapp.com/',
+				headers: {
+					Authorization: `Bearer ${JSON.parse(localStorage.getItem('user'))?.jwt_token}`,
+					'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+				},
+				responseType: 'arraybuffer'
+			})(
+				`/patient/download/excel`
+			);
+			const url = URL.createObjectURL(new Blob([response.data]));
+			const link = document.createElement("a");
+			link.href = url;
+			link.setAttribute("download", `patients.xlsx`); //or any other extension
+			document.body.appendChild(link);
+			link.click();
+			link.remove();
+		} catch (err) {
+			console.log(err);
+		}
+	};
 	const rows = patients
 	return (
 		<section className={styles.patients}>
 			<Typography
 				className={mainStyles.subtitle}
 				component={"h3"}
-				children={"Список пользователей"}
+				children={"Список пациентов"}
 			/>
 			<Stack
 				direction="row"
 				gap='20px'
 				margin={"20px 0 35px"}
+				height={'44px'}
 				justifyContent='space-between'
 			>
 				<InputApp
-					title='Скачать список'
 					variant='outlined'
 					onChange={(e) => setSearch(e.target.value)}
 					InputProps={{
@@ -148,6 +172,7 @@ const navigate = useNavigate()
 					style={{
 						minWidth: 'fit-content',
 						color: '#68B7EC',
+						marginTop: '-9px',
 					}}
 				/>
 				{/* <SelectBtn label={"Врач"} values={doctor} /> */}
@@ -161,6 +186,7 @@ const navigate = useNavigate()
 							minWidth: 'fit-content',
 							color: '#68B7EC'
 						}}
+						handleClick={handleDownloadPatients}
 					/>
 					<ButtonApp title={"Добавить пациента"} variant={'contained'} handleClick={addPatient} />
 				</Stack>

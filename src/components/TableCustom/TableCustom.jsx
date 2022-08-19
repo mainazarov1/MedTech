@@ -1,5 +1,6 @@
 import {
 	CircularProgress,
+	Stack,
 	Switch,
 	Table,
 	TableBody,
@@ -115,9 +116,14 @@ export const TableCustom = ({ columns, rows, handleClick, getData, radio }) => {
 					columns={1}
 				>
 					{
-						isLoading
+						isLoading || !rows
 							?
-							<TableRow>
+								// <Stack display={'flex'} justifyContent={'center'} alignItems={'center'} position={'relative'} width={'100%'} height={'600px'}>
+								// 	<CircularProgress />
+								// </Stack>
+							<TableRow
+							height={'500px'}
+							>
 								<TableCell
 									colSpan={columns.length - 1}
 									style={{
