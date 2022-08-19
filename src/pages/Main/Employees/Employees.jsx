@@ -17,9 +17,11 @@ import ModalDoctorInfo from '../../../components/Modals/ModalDoctorInfo/ModalDoc
 import { setSwitch } from '../../../redux/features/doctor/doctorSlice'
 import achivateService from '../../../services/archiveService'
 import { weekdays } from '../../../utils/mock'
+import ModalCreateAdmin from '../../../components/Modals/ModalCreateAdmin/ModalCreateAdmin'
 const Employees = () => {
 	const { user } = useSelector((state) => state.auth);
-	const [roles, setRoles] = useState([{title: "Супер администратор", role: 'superadmin'}, {title: "Администратор", role: 'admin'}, {title: "Врач", role: 'doctor'}])
+	const roles = [{ title: "Супер администратор", role: 'superadmin' }, { title: "Администратор", role: 'admin' }, { title: "Врач", role: 'doctor' }]
+	const [role, setRole] = useState()
 	const columns = [
 		{ id: "number", label: "№", width: 35 },
 		{
@@ -58,8 +60,11 @@ const Employees = () => {
 	];
 
 	const selectClick = (item) => {
-		setRoles([{title: "Супер администратор", role: 'superadmin'}, {title: "Администратор", role: 'admin'}, {title: "Врач", role: 'doctor'}])
-		return alert(`Add New ${item}`)
+		console.log(item);
+		setRole(item)
+		setModalCreateAdmin(true)
+		// setRoles([{title: "Супер администратор", role: 'superadmin'}, {title: "Администратор", role: 'admin'}, {title: "Врач", role: 'doctor'}])
+		// return alert(`Add New ${item}`)
 	}
 	const dispatch = useDispatch();
 	const [achivate, setAchivate] = useState('')
@@ -71,13 +76,13 @@ const Employees = () => {
 	const { doctor } = useSelector((state) => state.doctor)
 	const [search, setSearch] = useState('')
 	const [doctors, setDoctors] = useState([])
-	const days = useRef(['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'])
 	const [modalDoctorInfo, setModalDoctorInfo] = useState(false)
-	const [checkedUser,setCheckedUser] = useState()
+	const [modalCreateAdmin, setModalCreateAdmin] = useState(false)
+	const [checkedUser, setCheckedUser] = useState()
+	const [step, setStep] = useState()
 	const handleClick = (e) => {
-		console.log(e);
-		setCheckedUser(...doctor.filter(doc=>doc.id === e))
-		setModalDoctorInfo(!modalDoctorInfo)
+		setCheckedUser(...doctor.filter(doc => doc.id === e))
+		setModalDoctorInfo(true)
 	}
 	const addEmployees = () => {
 	}
@@ -86,13 +91,13 @@ const Employees = () => {
 			{
 				id: id,
 				number: addListNumber(i),
-				doctor: <span onClick={()=>handleClick(id)}>{showShortName({ last_name, name, patronymic })}</span>,
+				doctor: <span onClick={() => handleClick(id)}>{showShortName({ last_name, name, patronymic })}</span>,
 				role: role,
 				// doctor: <Link to={`${id}`}>{showShortName({ last_name, name, patronymic })}</Link>,
 				phone: <a href={`tel:${phone}`}>{phone}</a>,
 				email: <a href={`mailto:${email}`} target='_blank' rel="noreferrer" >{email}</a>,
 				patients: patients_num,
-				doctorworkshift: doctorworkshift?.map(({ weekday }) => weekdays[weekday]).sort((a,b)=>weekdays.indexOf(a)-weekdays.indexOf(b)).join(' '),
+				doctorworkshift: doctorworkshift?.map(({ weekday }) => weekdays[weekday]).sort((a, b) => weekdays.indexOf(a) - weekdays.indexOf(b)).join(' '),
 				active
 			}
 		))
@@ -101,7 +106,7 @@ const Employees = () => {
 	useEffect(() => {
 		if (achivate) {
 			const achivateAsyncFunc = async () => {
-				await achivateService.achivateUser({ id: achivate.id, role: achivate.role }).then(res=>res.data)
+				await achivateService.achivateUser({ id: achivate.id, role: achivate.role }).then(res => res.data)
 			}
 			achivateAsyncFunc()
 			setAchivate('')
@@ -124,16 +129,20 @@ const Employees = () => {
 			}
 		}
 		getData()
-	}, [ search, doctor, achivate ])
+	}, [search, doctor, achivate])
 	const rows = doctors
+
+
 	return (
 		<section className={styles.employees}>
-			{modalDoctorInfo
+			{modalDoctorInfo || modalCreateAdmin
 				?
 				<Stack
 					className={mainStyles.modal__view_background}
 				>
-					<ModalDoctorInfo handleClick={handleClick} checkedUser={checkedUser} />
+					{modalDoctorInfo && <ModalDoctorInfo handleClick={setModalDoctorInfo} checkedUser={checkedUser} />}
+					{modalCreateAdmin && <ModalCreateAdmin handleClick={setModalCreateAdmin} role={role} />}
+
 				</Stack>
 				: null
 			}
@@ -147,9 +156,6 @@ const Employees = () => {
 				gap='20px'
 				margin={"20px 0 35px"}
 				justifyContent='space-between'
-				// style={{
-				// 	height: '44px',
-				// }}
 			>
 				<InputApp
 					variant='outlined'
@@ -182,8 +188,8 @@ const Employees = () => {
 					/> */}
 					{user?.role === 'superadmin'
 						? <SelectBtn label={"Добавить пользователя"} values={roles} radio={true} handleClick={selectClick} />
-						:	null
-				}
+						: null
+					}
 				</Stack>
 			</Stack>
 			<Stack

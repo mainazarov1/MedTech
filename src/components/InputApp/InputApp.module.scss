@@ -9,6 +9,9 @@
 	color: $clr-grey;
 }
 .input {
+	&__container{
+		position: relative;
+	}
 	& .MuiOutlinedInput-root {
 		// height: 100px;
 	}

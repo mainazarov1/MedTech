@@ -26,14 +26,15 @@ const CssSelect = styled(Select)({
 });
 export const SelectBtn = ({ label = 'Врач', values, radio = false, handleClick, getDoctorId}) => {
 
-	const [name, setName] = useState('')
+	const [name, setName] = useState()
 	const handleChange = (event) => {
 		const docName = showShortName(event.target.value)
 		setName(values[docName.id])
 		getDoctorId(event.target.value.id)
 	};
-	const handleClickRole = (role) => {
-		handleClick(role)
+	const handleClickRole = (val) => {
+		console.log(val);
+		handleClick(val)
 	}
 	function showNames() {
 		if (values !== null) {
@@ -42,7 +43,7 @@ export const SelectBtn = ({ label = 'Врач', values, radio = false, handleCli
 					key={val?.id || i}
 					className={styles.select__item}
 					value={val}
-					onClick={radio ? ()=>handleClickRole(val.role) : null}
+					onClick={radio ? ()=>handleClickRole(val) : null}
 				>
 					{radio
 						? <><Radio />{val.title}</>
@@ -57,8 +58,9 @@ export const SelectBtn = ({ label = 'Врач', values, radio = false, handleCli
 			<CssSelect
 				className={styles.select}
 				onChange={!radio ? handleChange : null}
-				displayEmpty
+				displayEmpty={true}
 				defaultValue={''}
+				value={radio ? '' : name}
 			>
 				<MenuItem value=''>{label}</MenuItem>
 				{showNames()}

@@ -12,6 +12,9 @@
   background: #f7f3f7 !important;
   border-radius: 4px;
 }
+.input__container {
+  position: relative;
+}
 .input::before {
   border-bottom: none;
 }

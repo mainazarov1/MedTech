@@ -1,4 +1,4 @@
-@import './../../styles/variables.scss';
+@import "./../../styles/variables.scss";
 button.MuiButton-root {
 	font-family: "SF Pro Display";
 	font-style: normal;
@@ -7,7 +7,7 @@ button.MuiButton-root {
 	line-height: 100%;
 	text-transform: inherit;
 	padding: 11px;
-	&:hover{
+	&:hover {
 		border-color: $clr-active;
 	}
 }
@@ -26,6 +26,21 @@ button.MuiButton-contained {
 		outline: 0;
 	}
 }
+button.MuiButton-outlined {
+	background: $clr-white;
+	box-shadow: none;
+	color: $clr-active;
+	&:hover {
+		box-shadow: inset 0 0 2px .1px $clr-active;
+		box-shadow: none;
+	}
+	&:focus {
+		box-shadow: inset 0 0 2px .1px $clr-active;
+		border: 0;
+		outline: 0;
+		border: 1px solid $clr-active;
+	}
+}
 button.MuiButton-text {
 	color: $clr-active;
 	text-transform: inherit;
@@ -36,10 +51,10 @@ button.MuiButton-text {
 button.Mui-focusVisible {
 	border: 1px solid $clr-active;
 }
-button>span.MuiButton-startIcon{
+button > span.MuiButton-startIcon {
 	margin-right: 11px;
 	margin-left: 0px;
 }
-a{
+a {
 	text-decoration: none;
 }
