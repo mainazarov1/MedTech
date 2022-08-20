@@ -1,0 +1,76 @@
+// @import url(./../../../node_modules/react-calendar/dist/Calendar.css);
+@import './../../styles/variables.scss';
+.react-calendar {
+	width: 100%;
+	max-width: 400px;
+	min-width: 400px;
+	border: none;
+	border-radius: 10px;
+	&__navigation {
+		width: 60%;
+		margin-left: auto;
+	}
+	button.react-calendar__navigation__arrow {
+		border-radius: 8px;
+		&:hover {
+			background: $clr-active;
+			color: $clr-white;
+		}
+	}
+	button.react-calendar__navigation__label{
+		background: transparent;
+		color: $clr-black;
+		text-transform: uppercase;
+	}
+	button.react-calendar__navigation__prev2-button,
+	button.react-calendar__navigation__next2-button {
+		display: none;
+	}
+	&__month-view {
+		&__weekdays {
+			justify-content: space-between;
+			margin-bottom: 20px;
+			&__weekday {
+				max-width: 40px;
+				gap: 0 1.4rem;
+				font-size: 14px;
+				line-height: 10px;
+				color: $clr-grey;
+				text-decoration: none;
+				& abbr {
+					text-decoration: none;
+				}
+			}
+		}
+		&__days {
+			justify-content: space-between;
+			gap: 15px 20px;
+			&__day {
+				color: $clr-black;
+				&--neighboringMonth {
+					color: $clr-scroll;
+				}
+			}
+		}
+	}
+	&__tile {
+		max-width: 40px;
+		max-height: 40px;
+		font-size: 14px;
+		line-height: 13px;
+		border-radius: 8px;
+		&:enabled:hover,
+		&:enabled:focus {
+			background: $clr-active;
+			color: $clr-white;
+		}
+		&--now {
+			color: $clr-black;
+			background: $clr-activeLight;
+		}
+		&--active {
+			color: $clr-white;
+			background: $clr-active;
+		}
+	}
+}

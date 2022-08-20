@@ -1,0 +1,6 @@
+@import './../../styles/variables.scss';
+.nav {
+	display: flex;
+	gap: 20px;
+	background: $clr-white;
+}

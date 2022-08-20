@@ -1,0 +1,36 @@
+.modal {
+  box-sizing: border-box;
+  position: fixed;
+  width: 460px;
+  height: 428px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  border: 1px solid #f1f0f3;
+  border-radius: 10px;
+  padding: 30px;
+}
+.modal img.modal__avatar {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #a8a8a8;
+  border-radius: 70px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+.modal p.modal__text, .modal a.modal__text {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #4c464b;
+}
+.modal p.modal__description {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #a8a8a8;
+}/*# sourceMappingURL=ModalAppointment.module.css.map */

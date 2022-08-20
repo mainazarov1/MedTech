@@ -1,0 +1,45 @@
+.label {
+  margin: 0 0 6px 10px;
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 100%;
+  color: #a8a8a8;
+}
+
+.input {
+  background: #f7f3f7 !important;
+  border-radius: 4px;
+}
+.input__container {
+  position: relative;
+}
+.input::before {
+  border-bottom: none;
+}
+.input.Mui-Input-rootinput::before {
+  all: unset;
+}
+
+.input__message {
+  position: absolute;
+  bottom: -16px;
+  left: 10px;
+  color: #d42027;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 100%;
+}
+
+.input input {
+  border: 10px;
+  height: 50px;
+  padding: 0 14px;
+  border-radius: 4px;
+  color: #4c464b !important;
+}
+
+.input fieldset {
+  border: 1px solid #f1f0f3;
+}/*# sourceMappingURL=InputApp.module.css.map */

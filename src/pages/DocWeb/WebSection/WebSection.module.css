@@ -1,0 +1,35 @@
+.manual__page {
+  position: relative;
+  height: 100vh;
+  min-height: 768px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.manual__page::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(255, 255, 255, 0.98) 65%, white 100%);
+}
+.manual__logo {
+  position: relative;
+  align-items: flex-start;
+  margin-bottom: 100px;
+}
+.manual__bg__image {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.manual__content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}/*# sourceMappingURL=WebSection.module.css.map */

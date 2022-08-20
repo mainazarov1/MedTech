@@ -1,0 +1,11 @@
+.employees {
+  height: calc(100vh - 170px);
+  min-height: 680px;
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 10px;
+  border: 1px solid #f1f0f3;
+}
+.employees__table {
+  height: calc(100% - 135px);
+}/*# sourceMappingURL=Employees.module.css.map */

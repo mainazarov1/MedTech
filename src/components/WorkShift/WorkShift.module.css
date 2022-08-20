@@ -1,0 +1,89 @@
+div.workShift {
+  width: 400px;
+  height: 100%;
+  display: flex;
+  gap: 20px 0;
+}
+div.workShift div.workShift__btns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 11px;
+}
+div.workShift button.workShift__btn {
+  width: 90px;
+  height: 39px;
+  border-radius: 4px;
+  font-family: "SF Pro Display";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  border: 1px solid #68b7ec;
+  background-color: #ffffff;
+  color: #68b7ec;
+}
+@media (max-width: 1200px) {
+  div.workShift button.workShift__btn {
+    width: calc((100% - 33px) / 4);
+  }
+}
+@media (max-width: 900px) {
+  div.workShift button.workShift__btn {
+    width: calc((100% - 22px) / 2);
+  }
+}
+div.workShift button.workShift__btn_close {
+  color: #ffffff;
+  border: 1px solid #68b7ec;
+  background: #68b7ec;
+}
+div.workShift h4.workShift__title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0.24379px;
+  color: #4c464b;
+}
+div.workShift p.workShift__text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: -0.205297px;
+  color: #3b393c;
+}
+
+.workShift__empty {
+  width: 400px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+@media (max-width: 1200px) {
+  .workShift__empty {
+    align-items: flex-end;
+    height: auto;
+  }
+}
+.workShift__empty__text {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0.24379px;
+  color: #a8a8a8;
+}
+.workShift__empty__image {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url(./../../assets/images/doctors_workshift.svg);
+}
+@media (max-width: 1200px) {
+  .workShift__empty__image {
+    height: 300px;
+  }
+}/*# sourceMappingURL=WorkShift.module.css.map */

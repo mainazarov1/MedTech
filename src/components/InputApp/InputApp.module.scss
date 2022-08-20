@@ -1,0 +1,48 @@
+@import "./../../styles/variables.scss";
+.label {
+	margin: 0 0 6px 10px;
+	font-family: "SF Pro Display";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 100%;
+	color: $clr-grey;
+}
+.input {
+	&__container{
+		position: relative;
+	}
+	& .MuiOutlinedInput-root {
+		// height: 100px;
+	}
+
+	background: $clr-greyLight!important;
+	border-radius: 4px;
+	&::before {
+		border-bottom: none;
+	}
+	&.Mui-Input-root {
+		&input::before {
+			all: unset;
+		}
+	}
+}
+.input__message {
+	position: absolute;
+	bottom: -16px;
+	left: 10px;
+	color: $clr-red;
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 100%;
+}
+.input input {
+	border: 10px;
+	height: 50px;
+	padding: 0 14px;
+	border-radius: 4px;
+	color: $clr-black!important;
+}
+.input fieldset {
+	border: 1px solid $clr-greyBorder;
+}

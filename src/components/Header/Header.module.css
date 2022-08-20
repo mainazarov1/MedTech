@@ -1,0 +1,21 @@
+.header {
+  background: #aecdfd;
+  color: #ffffff;
+}
+
+.header__wrap {
+  padding: 10px 0;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 900;
+  gap: 10px;
+  color: #ffffff;
+  text-decoration: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}/*# sourceMappingURL=Header.module.css.map */

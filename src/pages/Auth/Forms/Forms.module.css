@@ -1,0 +1,55 @@
+.form {
+  position: relative;
+  top: calc((100% - 400px) / 2);
+  max-width: 400px;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 0 25px;
+}
+.form__button_back {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  margin-top: 24px;
+}
+.form__label {
+  padding-bottom: 6px;
+}
+.form__inputWrap {
+  position: relative;
+}
+.form__email_message {
+  position: absolute;
+  bottom: -16px;
+  left: 10px;
+  color: #d42027;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 100%;
+}
+.form__password_message {
+  position: absolute;
+  bottom: -20px;
+  left: 10px;
+  color: #d42027;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 100%;
+}
+.form__button {
+  height: 50px;
+}
+
+button.MuiButton-contained:hover {
+  background: rgba(104, 183, 236, 0.85);
+}
+
+h3.form__title {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+  color: #4c464b;
+  padding-bottom: 39px;
+}/*# sourceMappingURL=Forms.module.css.map */

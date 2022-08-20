@@ -1,0 +1,41 @@
+.modal {
+  box-sizing: border-box;
+  position: fixed;
+  width: 720px;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  border: 1px solid #f1f0f3;
+  border-radius: 10px;
+  padding: 30px;
+  z-index: 1000;
+}
+.modal__title {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  color: #4c464b;
+}
+.modal__avatar {
+  width: 170px;
+  height: 170px;
+  border: 1px solid #a8a8a8;
+  border-radius: 50%;
+  margin: 30px auto 15px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.modal__label {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 100%;
+  color: #a8a8a8;
+}/*# sourceMappingURL=ModalDoctorInfo.module.css.map */

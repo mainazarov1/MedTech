@@ -1,0 +1,43 @@
+@import './../../../styles/variables.scss';
+.manual {
+	&__page {
+		position: relative;
+		height: 100vh;
+		min-height: 768px;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		&::before {
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(
+				to left,
+				rgba($clr-white, 0) 0%,
+				rgba($clr-white, 0.9) 50%,
+				rgba($clr-white, 0.98) 65%,
+				rgba($clr-white, 1) 100%
+			);
+		}
+	}
+	&__logo{
+		position: relative;
+		align-items: flex-start;
+		margin-bottom: 100px;
+	}
+	&__bg__image {
+		position: absolute;
+		width: 100%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		height: 100%;
+		object-fit: cover;
+	}
+	&__content {
+		position: relative;
+		z-index: 10;
+		width: 100%;
+	}
+}

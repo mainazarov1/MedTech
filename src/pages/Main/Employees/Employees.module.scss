@@ -1,0 +1,12 @@
+@import "./../../../styles/variables.scss";
+.employees {
+	height: calc(100vh - 170px);
+	min-height: 680px;
+	background: $clr-white;
+	padding: 30px 25px;
+	border-radius: 10px;
+	border: 1px solid $clr-greyBorder;
+	&__table{
+		height: calc(100% - 135px);
+	}
+}

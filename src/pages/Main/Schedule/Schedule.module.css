@@ -1,0 +1,60 @@
+.schedule {
+  display: flex;
+  height: calc(100vh - 170px);
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  row-gap: 30px;
+  min-height: 680px;
+}
+@media (max-width: 1200px) {
+  .schedule {
+    flex-direction: column;
+    height: 100%;
+  }
+}
+.schedule__content {
+  width: 100%;
+  background: #ffffff;
+  padding: 30px 25px;
+  border: 1px solid #f1f0f3;
+  border-radius: 10px;
+}
+.schedule__content .subtitle {
+  font-size: 24px;
+}
+.schedule div.schedule__calendar {
+  background: #ffffff;
+  padding: 30px 20px;
+  gap: 50px 0;
+  border: 1px solid #f1f0f3;
+  border-radius: 10px;
+}
+@media (min-width: 700px) and (max-width: 1199px) {
+  .schedule div.schedule__calendar {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+    gap: 0 50px;
+  }
+}
+@media (max-width: 1199px) {
+  .schedule div.schedule__calendar {
+    gap: 0 50px;
+  }
+}
+
+.calendar__content {
+  position: relative;
+}
+
+p.calendar__text {
+  position: absolute;
+  top: 10px;
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0.24379px;
+  color: #4c464b;
+}/*# sourceMappingURL=Schedule.module.css.map */

@@ -1,0 +1,65 @@
+button.MuiButton-root {
+  font-family: "SF Pro Display";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 100%;
+  text-transform: inherit;
+  padding: 11px;
+}
+button.MuiButton-root:hover {
+  border-color: #68b7ec;
+}
+
+button.MuiButton-contained {
+  background: #68b7ec;
+  box-shadow: none;
+  color: #ffffff;
+}
+button.MuiButton-contained:hover {
+  background: rgba(104, 183, 236, 0.8);
+  box-shadow: none;
+}
+button.MuiButton-contained:focus {
+  background: rgba(104, 183, 236, 0.8);
+  box-shadow: none;
+  border: 0;
+  outline: 0;
+}
+
+button.MuiButton-outlined {
+  background: #ffffff;
+  box-shadow: none;
+  color: #68b7ec;
+}
+button.MuiButton-outlined:hover {
+  box-shadow: inset 0 0 2px 0.1px #68b7ec;
+  box-shadow: none;
+}
+button.MuiButton-outlined:focus {
+  box-shadow: inset 0 0 2px 0.1px #68b7ec;
+  border: 0;
+  outline: 0;
+  border: 1px solid #68b7ec;
+}
+
+button.MuiButton-text {
+  color: #68b7ec;
+  text-transform: inherit;
+}
+button.MuiButton-text:hover {
+  background: transparent;
+}
+
+button.Mui-focusVisible {
+  border: 1px solid #68b7ec;
+}
+
+button > span.MuiButton-startIcon {
+  margin-right: 11px;
+  margin-left: 0px;
+}
+
+a {
+  text-decoration: none;
+}/*# sourceMappingURL=ButtonApp.module.css.map */

@@ -1,0 +1,74 @@
+@import './../../../styles/variables.scss';
+.profile {
+	height: calc(100vh - 170px);
+	min-height: 680px;
+	gap: 20px;
+	border-radius: 10px;
+	display: flex;
+	&__employees {
+		background: $clr-white;
+		padding: 0 8px 30px 25px;
+		border: 1px solid $clr-greyBorder;
+		border-radius: 10px;
+		width: calc(100% - 60%);
+		min-width: 370px;
+		@media (max-width: 1199px) {
+		width: calc(100% - 60%);
+		}
+	}
+	&__info {
+		padding-right: 8px;
+		margin-top: 30px;
+		overflow-y: scroll;
+		position: relative;
+		&::-webkit-scrollbar {
+			scrollbar-width: 1px;
+			position: absolute;
+			width: 8px;
+			height: 8px;
+
+		}
+		&::-webkit-scrollbar-track {
+			background: $clr-greyBorder;
+			border-radius: 12px;
+			height: 100%;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: $clr-scroll;
+			border-radius: 12px;
+			height: 30%;
+		}
+		&_header {
+			position: sticky;
+			top: 0;
+			// left: -25px;
+			z-index: 1000;
+			width: 100%;
+			background: $clr-white;
+			padding-bottom: 15px;
+		}
+	}
+	&__avatar {
+		width: 120px;
+		height: 120px;
+		border: 1px solid $clr-grey;
+		border-radius: 50%;
+		object-fit: cover;
+		object-position: center center;
+	}
+	&__content {
+		flex: 0 1 100%;
+		border: 1px solid $clr-greyBorder;
+		background: $clr-white;
+		padding: 30px 25px;
+		border-radius: 10px;
+	}
+	&__table {
+		height: calc(100% - 60px);
+	}
+}
+div.analisys{
+	background-color: red;
+	// display: none;
+}
