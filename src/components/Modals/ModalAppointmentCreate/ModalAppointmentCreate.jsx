@@ -40,8 +40,9 @@ export const ModalAppointmentCreate = ({ doctorId, handleClick, date, time, data
 		try {
 			await api.get(`/patient/findBySurname/${search}`).then(res => res.data).then(data => {
 				try {
-					console.log(data[0].id);
-					const patientId = data[0].id;
+					console.log(data[0]?.id);
+					console.log(data);
+					const patientId = data[0]?.id;
 					api.post('/appointment', {
 						date: `${date.slice(0, 11)}${time}${date.slice(16)}`,
 						doctor: doctorId,
@@ -134,7 +135,7 @@ export const ModalAppointmentCreate = ({ doctorId, handleClick, date, time, data
 			<Stack
 				gap={'30px'}
 			>
-				<InputApp label={'Пациент'} placeholder='Выбрать пациента'
+				<InputApp label={'Пациент'} placeholder={'Выбрать пациента'}
 					onChange={(e) => setSearch(e.target.value)}
 					value={data?.patient?.last_name}
 				/>

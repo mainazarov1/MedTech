@@ -85,7 +85,8 @@ const ProfilePatient = () => {
 	}, [userId, location, user, setCheckedUser])
 	const [checkLists, setCheckLists] = useState([])
 	const [rightView, setRightView] = useState(checkLists?.length !== 0)
-	const [checkListNumber, setCheckListNumber] = useState(0)
+	const [checkListNumber, setCheckListNumber] = useState()
+	const [checkListId, setCheckListId] = useState()
 	const onSubmit = (data) => {
 		console.log(data);
 		const req = async () => {
@@ -126,7 +127,8 @@ const ProfilePatient = () => {
 	const showCheckList = () => {
 		return checkLists?.map((item, i) => {
 			return <ButtonApp key={i}
-				handleClick={() => {
+				handleClick={(e) => {
+					setCheckListId(item.id)
 					setCheckListNumber(i)
 					setRightView(false)
 				}}
@@ -171,7 +173,7 @@ const ProfilePatient = () => {
 						</Stack>
 						: <Stack>
 							<Stack alignItems={'flex-start'} marginBottom={'10px'}>
-								<img className={styles.profile__avatar} src={checkedUser?.image ? `data:image/jpeg;base64,${user?.image}` : icons.avatar} alt='avatar' />
+								<img className={styles.profile__avatar} src={checkedUser?.image ? user?.image : icons.avatar} alt='avatar' />
 							</Stack>
 							<Stack gap={'20px'} marginBottom={'25px'}>
 								<Stack
@@ -272,7 +274,7 @@ const ProfilePatient = () => {
 			} */}
 			{location.pathname === `/patients/new`
 				? <MedCard setCheckedUser={setCheckedUser} setMedcard={setMedcard} />
-				: location.pathname === `/patients/${userId}`  && rightView
+				: location.pathname === `/patients/${userId}` && rightView
 					? <MedCard checkedUser={checkedUser} />
 					: <CheckList checkListNumber={checkListNumber} checkedUser={checkedUser} />
 			}

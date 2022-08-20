@@ -102,7 +102,7 @@ const requiredLabels = [
 	// 'marital_status', 'education'
 ]
 const MedCard = ({ checkedUser, setCheckedUser, setMedcard }) => {
-	const [edit,setEdit]=useState(false)
+	const [edit, setEdit] = useState(false)
 	const medcardId = checkedUser?.medcard?.id
 	const newUserDefaultValues = Object?.keys(labelsObj)?.reduce((acc, item) => {
 		acc[item] = ''
@@ -197,6 +197,7 @@ const MedCard = ({ checkedUser, setCheckedUser, setMedcard }) => {
 											<InputApp
 												field={{ value, onChange, name, onBlur }}
 												label={label}
+												disabled={!edit}
 												// defaultValues={checkedUser ? checkedUser?.medcard?.[el[0]] : ''}
 												value={value}
 												errors={errors}
@@ -218,33 +219,38 @@ const MedCard = ({ checkedUser, setCheckedUser, setMedcard }) => {
 			// defaultValues={newUserDefaultValues}
 			onSubmit={handleSubmit(onSubmit)}
 		>
-			<Stack overflow={'scroll'}>
-				<Stack direction='row' gap='40px' justifyContent='flex-end'>
-					<ButtonApp
-						title='Скачать мед-карту'
-						variant='outlined'
-						endIcon={<IconDownload props='#68B7EC' />}
-						style={{
-							width: "fit-content",
-							minWidth: 'fit-content',
-							color: '#68B7EC'
-						}}
-						handleClick={()=>handleDownloadMedcard(medcardId)}
-					/>
-					<ButtonApp title={!edit ? "Редактировать" : "Сохранить"} variant={'contained'}
-						type={edit ? 'button' : 'submit'}
-						handleClick={()=>setEdit(!edit)}
-						style={{
-							width: "fit-content",
-							minWidth: '140px',
-						}}
-					/>
-				</Stack>
-				<Stack justifyContent={'center'} direction={'row'} marginTop={'50px'}>
-					<Typography className={mainStyles.subtitle} component={'h3'} children={'МЕДИЦИНСКАЯ ДОКУМЕНТАЦИЯ'} />
-				</Stack>
-				{showMedcard()}
-				{/* <Accordion>
+			<Stack
+				overflow={'scroll'}
+			>
+				<Stack
+				position={'sticky'}
+					>
+					<Stack direction='row' gap='40px' justifyContent='flex-end'>
+						<ButtonApp
+							title='Скачать мед-карту'
+							variant='outlined'
+							endIcon={<IconDownload props='#68B7EC' />}
+							style={{
+								width: "fit-content",
+								minWidth: 'fit-content',
+								color: '#68B7EC'
+							}}
+							handleClick={() => handleDownloadMedcard(medcardId)}
+						/>
+						<ButtonApp title={!edit ? "Редактировать" : "Сохранить"} variant={'contained'}
+							type={edit ? 'button' : 'submit'}
+							handleClick={() => setEdit(!edit)}
+							style={{
+								width: "fit-content",
+								minWidth: '140px',
+							}}
+						/>
+					</Stack>
+					<Stack justifyContent={'center'} direction={'row'} marginTop={'50px'}>
+						<Typography className={mainStyles.subtitle} component={'h3'} children={'МЕДИЦИНСКАЯ ДОКУМЕНТАЦИЯ'} />
+					</Stack>
+					{showMedcard()}
+					{/* <Accordion>
 					<AccordionSummary
 						direction={"column"}
 						expandIcon={<ExpandMore />}
@@ -451,6 +457,7 @@ const MedCard = ({ checkedUser, setCheckedUser, setMedcard }) => {
 						</Stack>
 					</AccordionDetails>
 				</Accordion> */}
+				</Stack>
 			</Stack>
 		</Stack>
 	)

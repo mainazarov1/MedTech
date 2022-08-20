@@ -60,13 +60,12 @@
 	&__content {
 		flex: 0 1 100%;
 		border: 1px solid $clr-greyBorder;
-
 		background: $clr-white;
 		padding: 30px 25px;
 		border-radius: 10px;
 	}
 	&__table {
-		height: calc(100% - 24px);
+		height: calc(100% - 60px);
 	}
 }
 div.analisys{

@@ -82,9 +82,9 @@ const Schedule = () => {
 			return appointment?.map(({ id, doctor, patient, date, description }, i) => {
 				return {
 					number: addListNumber(i),
-					doctor: <Link to={`/employees/${doctor.id}`}>{showShortName({ last_name: doctor?.last_name, name: doctor?.name, patronymic: doctor?.patronymic })}</Link>,
+					doctor: <Link to={`/employees/${doctor?.id}`}>{showShortName({ last_name: doctor?.last_name, name: doctor?.name, patronymic: doctor?.patronymic })}</Link>,
 						// showShortName({ last_name: doctor?.last_name, name: doctor?.name, patronymic: doctor?.patronymic }),
-					patient: <Link to={`/patients/${patient.id}`}>{showShortName({ last_name: patient?.last_name, name: patient?.name, patronymic: patient?.patronymic })}</Link>,
+					patient: <Link to={`/patients/${patient?.id}`}>{showShortName({ last_name: patient?.last_name, name: patient?.name, patronymic: patient?.patronymic })}</Link>,
 					date: `${date.slice(0, 10).split('-').reverse().join('.')}`,
 					time: `${date.slice(11, 16)}`,
 					doctorPhone: doctor?.phone,

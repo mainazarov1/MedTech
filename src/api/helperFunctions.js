@@ -33,3 +33,14 @@ export const addListNumber = (i) => {
 // 		}
 // 	})
 // }
+export const nameControl = (name, i) => {
+	if (name === 'analysis') {
+		return `question${i + 1}`
+	}
+	if (name === 'indicators') {
+		return `answer${i + 1}`
+	}
+	if (name === 'description') {
+		return `description${i + 1}`
+	}
+}

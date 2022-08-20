@@ -1,4 +1,4 @@
-import { CircularProgress, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
+import { CircularProgress, Input, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import IconDownload from '../../../assets/icons/IconDownload'
 import { ButtonApp } from '../../../components/ButtonApp/ButtonApp'
@@ -7,7 +7,11 @@ import mainStyles from './../../../styles/index.module.css'
 import { addListNumber } from '../../../api/helperFunctions'
 
 import axios from 'axios'
-
+import { InputApp } from '../../../components/InputApp/InputApp'
+import { useSelector } from 'react-redux'
+import { Controller, useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 const columns = [
 	{ id: "number", label: "№", width: 35 },
 	{ id: "analysis", label: "Анализ/Жалоба", minWidth: 'fit-content' },
@@ -27,6 +31,26 @@ const columns = [
 
 export const CheckList = ({ checkListNumber, checkedUser }) => {
 	// const [number, setNumber] = useState()
+	const newDefaultValues = () => {
+		// console.log(checkedUser?.checklist?.id === [checkListId])
+		// console.log(checkListNumber);
+	}
+	newDefaultValues()
+	// React-Hook-Form
+	const { register, handleSubmit, control,
+		formState: {
+			errors,
+			isDirty,
+			isValid
+		},
+	} = useForm({
+		// resolver: yupResolver(schema),
+		defaultValues: {
+			
+		},
+		mode: 'onChange'
+	});
+	const {user}=useSelector(state=>state.auth)
 	const formatData = (arr) => {
 		return arr?.map(({ question, answer, description }, i) => {
 			return {
@@ -37,6 +61,7 @@ export const CheckList = ({ checkListNumber, checkedUser }) => {
 			}
 		})
 	}
+
 	// console.log(checkedUser?.checklist?.['0'])
 	const [checkListId, setCheckListId] = useState()
 	const [checkList, setCheckList] = useState([])
@@ -87,6 +112,7 @@ export const CheckList = ({ checkListNumber, checkedUser }) => {
 			className={styles.profile__content}
 		>
 			<Stack
+				className={styles.profile__info_header}
 				direction={'row'}
 				justifyContent={'space-between'}
 			>
@@ -112,7 +138,7 @@ export const CheckList = ({ checkListNumber, checkedUser }) => {
 				</Stack>
 			</Stack>
 			{!checkedUser
-				? <Stack display={'flex'} justifyContent={'center'} alignItems={'center'} position={'relative'} width={'100%'} height={'600px'}>
+				? <Stack display={'flex'} justifyContent={'center'} alignItems={'center'} position={'relative'} width={'100%'} height={'580px'}>
 					<CircularProgress />
 				</Stack>
 				:
@@ -147,8 +173,8 @@ export const CheckList = ({ checkListNumber, checkedUser }) => {
 								}}
 							>
 								{
-									checkList.length !== 0
-										? checkList.map((row, i) => (
+									checkList?.length !== 0
+										? checkList?.map((row, i) => (
 											<TableRow key={i}
 												sx={{
 													borderCollapse: 'separate',
@@ -175,7 +201,51 @@ export const CheckList = ({ checkListNumber, checkedUser }) => {
 																}
 															}}
 														>
-															{value ? value : 'Введите показатели'}
+															{/* number: addListNumber(i),
+				analysis: question,
+				indicators: answer,
+				description: description */}
+															{(user?.role === 'superadmin') && column.id !== 'number'
+																?	
+																// <input
+																// 	{...register("First name")}
+																// 	register={"question"}
+																// 	defaultValue={value}
+																// 	value={onChange}
+																// 	// onChange={(e) => onChange(e.target.value)}
+																// />
+																<Controller
+																name='question'
+																control={control}
+																render={({ field }) => (
+																	<Input
+																		variant={'standart'}
+																		field={field}
+																		value={value}
+																		errors={errors}
+																		/>
+																)} />
+																: (user?.role === 'doctor') && (column.id !== 'number')
+																?	
+																// <input
+																// 	{...register("First name")}
+																// 	register={"question"}
+																// 	defaultValue={value}
+																// 	value={onChange}
+																// 	// onChange={(e) => onChange(e.target.value)}
+																// />
+																<Controller
+																name='question'
+																control={control}
+																render={({ field }) => (
+																	<Input
+																		variant={'standart'}
+																		field={field}
+																		value={value}
+																		errors={errors}
+																		/>
+																)} />
+																: value}
 														</TableCell>
 													)
 												})}

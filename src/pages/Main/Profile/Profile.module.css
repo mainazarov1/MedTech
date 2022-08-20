@@ -67,7 +67,7 @@
   border-radius: 10px;
 }
 .profile__table {
-  height: calc(100% - 24px);
+  height: calc(100% - 60px);
 }
 
 div.analisys {
